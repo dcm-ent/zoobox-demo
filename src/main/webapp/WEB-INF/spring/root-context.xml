@@ -39,7 +39,7 @@
 	<mybatis-spring:scan base-package="com.dcm.zoobox.mapper"/>
 	
 	<context:component-scan
-		base-package="com.dcm.zoobox.*">
+		base-package="com.dcm.zoobox">
 	</context:component-scan>
 
 </beans>
