@@ -10,17 +10,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:/jdbc.properties</value>
-            </list>
-        </property>
-    </bean>	
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariDataSource">
 		<property name="driverClassName"
 			value="${mysql.connection.driver_class}" />
-		<property name="jdbcUrl" value="${mysql.connection.url}" />
+		<property name="jdbcUrl" 
+			value="${mysql.connection.url}" />
 		<property name="username"
 			value="${mysql.connection.username}" />
 		<property name="password"
@@ -33,9 +29,13 @@
 	</bean>
 	<bean id="sqlSessionFactory" 
 	class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" 
+			value="classpath:configuration.xml" />
 	</bean>
-	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
 	<mybatis-spring:scan base-package="com.dcm.zoobox.mapper"/>
 	
 	<context:component-scan
