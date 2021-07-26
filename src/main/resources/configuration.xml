@@ -10,11 +10,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings> 
 	
 	<typeAliases>
-		<typeAlias alias="actor" type="com.dcm.zoobox.model.Actor" />
+		<typeAlias alias="user" type="com.dcm.zoobox.user.model.User"/>
+		<typeAlias alias="article" type="com.dcm.zoobox.article.model.Article"/>
+		<typeAlias alias="place" type="com.dcm.zoobox.place.model.Place"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mappers/samplemapper.xml"/>
+		<mapper resource="mappers/usermapper.xml"/>
+		<mapper resource="mappers/articlemapper.xml"/>
+		<mapper resource="mappers/placemapper.xml"/>
 	</mappers>
 	
 </configuration>

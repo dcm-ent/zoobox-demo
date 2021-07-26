@@ -36,7 +36,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/sts-bundle/sts-3.9.14.RELEASE/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/sts-bundle/sts-3.9.14.RELEASE/mysql-connector-java-8.0.25.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/lib/lombok.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/lib/mysql-connector-java-8.0.25.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
