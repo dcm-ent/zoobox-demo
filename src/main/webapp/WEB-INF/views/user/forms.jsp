@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+pageEncoding="UTF-8" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -36,7 +35,14 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       type="text/css"
     />
   </head>
-
+<style>
+	#flex {
+		display:flex;
+	}
+	#resetButton{
+		float:right;
+	}
+</style>
   <body>
     <div id="wrapper">
       <!-- Navigation -->
@@ -96,100 +102,138 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         <div class="row">
           <div class="col-lg-12">
             <div class="panel panel-default">
-              <div class="panel-heading">Basic Form Elements</div>
+              <div class="panel-heading">회원가입 양식</div>
               <div class="panel-body">
                 <div class="row">
                   <div class="col-lg-6">
                     <form role="form">
-                      <div class="form-group">
-                        <label>Text Input</label>
-                        <input class="form-control" />
-                        <p class="help-block">
-                          Example block-level help text here.
-                        </p>
+                    <div class="form-group">
+                          <label>프로필 사진등록</label>
+                          <input type="file" />
+                      </div>
+                      <label>이메일</label>
+                     <div class="form-group" id="flex">	
+                        <input
+                          class="form-control"
+                          placeholder="이메일을 입력해주세요"/>
+                        <span class="input-group-addon">@</span>
+                        <select class="form-control" >
+                          <option>naver.com</option>
+                          <option>gmail.com</option>
+                          <option>gmail.com</option>
+                        </select>
+                        <button class="btn btn-default" type="button">
+                            중복확인
+                        </button>
+                     	</div>
+                      	<div class="form-group">
+                        <label>이메일인증</label>
+                        <input
+                          class="form-control"
+                          placeholder="인증번호를 입력해주세요"
+                        />
+                      </div>
+						<div class="form-group">
+                        <label>패스워드</label>
+                        <input
+                          class="form-control"
+                          placeholder="패스워드를 입력해주세요(10자이상,특수문자포함)"
+                        />
                       </div>
                       <div class="form-group">
-                        <label>Text Input with Placeholder</label>
-                        <input class="form-control" placeholder="Enter text" />
+                        <label>패스워드 확인</label>
+                        <input
+                          class="form-control"
+                          placeholder="패스워드를 확인해주세요"
+                        />
                       </div>
-                      <div class="form-group">
-                        <label>Static Control</label>
-                        <p class="form-control-static">email@example.com</p>
+                       <label>닉네임</label>
+                       <div class="form-group"id="flex">
+                        <input
+                          class="form-control"
+                          placeholder="닉네임을 입력해주세요"
+                        />
+                        <button class="btn btn-default" type="button">
+                            중복확인
+                        </button>
                       </div>
+                     	
                       <div class="form-group">
-                        <label>File input</label>
-                        <input type="file" />
+                        <label>휴대폰 번호</label>
+                       
+                        <input
+                          class="form-control"
+                          placeholder="휴대폰 번호를 입력해주세요"
+                        />
+                         <button class="btn btn-default" type="button">
+                            휴대폰 인증
+                        </button>
+                       
                       </div>
+                       
+                      	<label>주소 검색</label>
+                   		
+                        <input type="text" class="form-control" />
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">
+                            우편번호 찾기
+                          </button>
+                        </span>
+                        <label>상세주소 입력</label>
+                     	<input type="text" class="form-control" />
+                      <label>생년월일</label>
+                       <div class="form-group" id="flex">
+               			 <input class="form-control" type="text" name="inyear" size="5" class="inBorder" />년
+              		  <select class="form-control">
+                    <option value="1">1
+                    <option value="2">2
+                    <option value="3">3
+                    <option value="4">4
+                    <option value="5">5
+                    <option value="6">6
+                    <option value="7">7
+                    <option value="8">8
+                    <option value="9">9
+                    <option value="10">10
+                    <option value="11">11
+                    <option value="12">12                            
+                </select> 월
+                <select class="form-control">
+                    <option value="1">1
+                    <option value="2">2
+                    <option value="3">3
+                    <option value="4">4
+                    <option value="5">5
+                    <option value="6">6
+                    <option value="7">7
+                    <option value="8">8
+                    <option value="9">9
+                    <option value="10">10
+                    <option value="11">11
+                    <option value="12">12  
+                    <option value="13">13
+                    <option value="14">14
+                    <option value="15">15
+                    <option value="16">16
+                    <option value="17">17
+                    <option value="18">18
+                    <option value="19">19
+                    <option value="20">20
+                    <option value="21">21
+                    <option value="22">22
+                    <option value="23">23
+                    <option value="24">24
+                    <option value="25">25
+                    <option value="26">26
+                    <option value="27">27
+                    <option value="28">28
+                    <option value="29">29
+                    <option value="30">30
+                    <option value="31">31
+               			 </select> 일
+              		</div>	
+                      <label>성별</label>
                       <div class="form-group">
-                        <label>Text area</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Checkboxes</label>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="" />Checkbox 1
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="" />Checkbox 2
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="" />Checkbox 3
-                          </label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Inline Checkboxes</label>
-                        <label class="checkbox-inline">
-                          <input type="checkbox" />1
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="checkbox" />2
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="checkbox" />3
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label>Radio Buttons</label>
-                        <div class="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name="optionsRadios"
-                              id="optionsRadios1"
-                              value="option1"
-                              checked
-                            />Radio 1
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name="optionsRadios"
-                              id="optionsRadios2"
-                              value="option2"
-                            />Radio 2
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name="optionsRadios"
-                              id="optionsRadios3"
-                              value="option3"
-                            />Radio 3
-                          </label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Inline Radio Buttons</label>
                         <label class="radio-inline">
                           <input
                             type="radio"
@@ -197,7 +241,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             id="optionsRadiosInline1"
                             value="option1"
                             checked
-                          />1
+                          />남성
                         </label>
                         <label class="radio-inline">
                           <input
@@ -205,149 +249,16 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             name="optionsRadiosInline"
                             id="optionsRadiosInline2"
                             value="option2"
-                          />2
-                        </label>
-                        <label class="radio-inline">
-                          <input
-                            type="radio"
-                            name="optionsRadiosInline"
-                            id="optionsRadiosInline3"
-                            value="option3"
-                          />3
+                          />여성
                         </label>
                       </div>
-                      <div class="form-group">
-                        <label>Selects</label>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Multiple Selects</label>
-                        <select multiple class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                      </div>
-                      <button type="submit" class="btn btn-default">
-                        Submit Button
+                      <button type="submit" class="btn btn-primary">
+                       작성 완료
                       </button>
-                      <button type="reset" class="btn btn-default">
-                        Reset Button
+                      <button type="reset" class="btn btn-danger" id="resetButton">
+                       초기화
                       </button>
-                    </form>
-                  </div>
-                  <!-- /.col-lg-6 (nested) -->
-                  <div class="col-lg-6">
-                    <h1>Disabled Form States</h1>
-                    <form role="form">
-                      <fieldset disabled>
-                        <div class="form-group">
-                          <label for="disabledSelect">Disabled input</label>
-                          <input
-                            class="form-control"
-                            id="disabledInput"
-                            type="text"
-                            placeholder="Disabled input"
-                            disabled
-                          />
-                        </div>
-                        <div class="form-group">
-                          <label for="disabledSelect"
-                            >Disabled select menu</label
-                          >
-                          <select id="disabledSelect" class="form-control">
-                            <option>Disabled select</option>
-                          </select>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" />Disabled Checkbox
-                          </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                          Disabled Button
-                        </button>
-                      </fieldset>
-                    </form>
-                    <h1>Form Validation States</h1>
-                    <form role="form">
-                      <div class="form-group has-success">
-                        <label class="control-label" for="inputSuccess"
-                          >Input with success</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputSuccess"
-                        />
-                      </div>
-                      <div class="form-group has-warning">
-                        <label class="control-label" for="inputWarning"
-                          >Input with warning</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputWarning"
-                        />
-                      </div>
-                      <div class="form-group has-error">
-                        <label class="control-label" for="inputError"
-                          >Input with error</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputError"
-                        />
-                      </div>
-                    </form>
-                    <h1>Input Groups</h1>
-                    <form role="form">
-                      <div class="form-group input-group">
-                        <span class="input-group-addon">@</span>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Username"
-                        />
-                      </div>
-                      <div class="form-group input-group">
-                        <input type="text" class="form-control" />
-                        <span class="input-group-addon">.00</span>
-                      </div>
-                      <div class="form-group input-group">
-                        <span class="input-group-addon"
-                          ><i class="fa fa-eur"></i>
-                        </span>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Font Awesome Icon"
-                        />
-                      </div>
-                      <div class="form-group input-group">
-                        <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" />
-                        <span class="input-group-addon">.00</span>
-                      </div>
-                      <div class="form-group input-group">
-                        <input type="text" class="form-control" />
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                          </button>
-                        </span>
-                      </div>
-                    </form>
+                   </form>
                   </div>
                   <!-- /.col-lg-6 (nested) -->
                 </div>
