@@ -14,4 +14,12 @@ public class UserController {
 	public void user() {
 		log.info("============user===========");
 	}
+	@GetMapping("/forms")
+	public void forms() {
+		log.info("join form");
+	}
+	@GetMapping("/login")
+	public void login() {
+		log.info("login form");
+	}
 }
