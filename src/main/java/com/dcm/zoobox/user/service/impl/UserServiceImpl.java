@@ -28,8 +28,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(Long userId) {
-	
+	log.info("유저등록");
 	return mapper.getUser(userId);
+	
 }
 
 }
