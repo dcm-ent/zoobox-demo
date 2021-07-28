@@ -35,14 +35,14 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       type="text/css"
     />
   </head>
-<style>
-	#flex {
-		display:flex;
-	}
-	#resetButton{
-		float:right;
-	}
-</style>
+  <style>
+    #flex {
+      display: flex;
+    }
+    #resetButton {
+      float: right;
+    }
+  </style>
   <body>
     <div id="wrapper">
       <!-- Navigation -->
@@ -107,33 +107,36 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                 <div class="row">
                   <div class="col-lg-6">
                     <form role="form">
-                    <div class="form-group">
-                          <label>프로필 사진등록</label>
-                          <input type="file" />
+                      <div class="form-group">
+                        <label>프로필 사진등록</label>
+                        <input type="file" />
                       </div>
                       <label>이메일</label>
-                     <div class="form-group" id="flex">	
+                      <div class="form-group" id="flex">
                         <input
                           class="form-control"
-                          placeholder="이메일을 입력해주세요"/>
+                          placeholder="이메일을 입력해주세요"
+                          name="email"
+                          value="email"
+                        />
                         <span class="input-group-addon">@</span>
-                        <select class="form-control" >
+                        <select class="form-control">
                           <option>naver.com</option>
                           <option>gmail.com</option>
                           <option>gmail.com</option>
                         </select>
-                        <button class="btn btn-default" type="button">
-                            중복확인
+                        <button class="btn btn-default emailbtn" type="button">
+                          중복확인
                         </button>
-                     	</div>
-                      	<div class="form-group">
+                      </div>
+                      <div class="form-group">
                         <label>이메일인증</label>
                         <input
                           class="form-control"
                           placeholder="인증번호를 입력해주세요"
                         />
                       </div>
-						<div class="form-group">
+                      <div class="form-group">
                         <label>패스워드</label>
                         <input
                           class="form-control"
@@ -147,91 +150,103 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           placeholder="패스워드를 확인해주세요"
                         />
                       </div>
-                       <label>닉네임</label>
-                       <div class="form-group"id="flex">
+                      <label>닉네임</label>
+                      <div class="form-group" id="flex">
                         <input
                           class="form-control"
                           placeholder="닉네임을 입력해주세요"
                         />
-                        <button class="btn btn-default" type="button">
-                            중복확인
+                        <button
+                          class="btn btn-default nicknamebtn"
+                          type="button"
+                        >
+                          중복확인
                         </button>
                       </div>
-                     	
+
                       <div class="form-group">
                         <label>휴대폰 번호</label>
-                       
+
                         <input
                           class="form-control"
                           placeholder="휴대폰 번호를 입력해주세요"
                         />
-                         <button class="btn btn-default" type="button">
-                            휴대폰 인증
+                        <button class="btn btn-default" type="button">
+                          휴대폰 인증
                         </button>
-                       
                       </div>
-                       
-                      	<label>주소 검색</label>
-                   		
-                        <input type="text" class="form-control" />
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                            우편번호 찾기
-                          </button>
-                        </span>
-                        <label>상세주소 입력</label>
-                     	<input type="text" class="form-control" />
+
+                      <label>주소 검색</label>
+
+                      <input type="text" class="form-control" />
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                          우편번호 찾기
+                        </button>
+                      </span>
+                      <label>상세주소 입력</label>
+                      <input type="text" class="form-control" />
                       <label>생년월일</label>
-                       <div class="form-group" id="flex">
-               			 <input class="form-control" type="text" name="inyear" size="5" class="inBorder" />년
-              		  <select class="form-control">
-                    <option value="1">1
-                    <option value="2">2
-                    <option value="3">3
-                    <option value="4">4
-                    <option value="5">5
-                    <option value="6">6
-                    <option value="7">7
-                    <option value="8">8
-                    <option value="9">9
-                    <option value="10">10
-                    <option value="11">11
-                    <option value="12">12                            
-                </select> 월
-                <select class="form-control">
-                    <option value="1">1
-                    <option value="2">2
-                    <option value="3">3
-                    <option value="4">4
-                    <option value="5">5
-                    <option value="6">6
-                    <option value="7">7
-                    <option value="8">8
-                    <option value="9">9
-                    <option value="10">10
-                    <option value="11">11
-                    <option value="12">12  
-                    <option value="13">13
-                    <option value="14">14
-                    <option value="15">15
-                    <option value="16">16
-                    <option value="17">17
-                    <option value="18">18
-                    <option value="19">19
-                    <option value="20">20
-                    <option value="21">21
-                    <option value="22">22
-                    <option value="23">23
-                    <option value="24">24
-                    <option value="25">25
-                    <option value="26">26
-                    <option value="27">27
-                    <option value="28">28
-                    <option value="29">29
-                    <option value="30">30
-                    <option value="31">31
-               			 </select> 일
-              		</div>	
+                      <div class="form-group" id="flex">
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="inyear"
+                          size="5"
+                          class="inBorder"
+                        />년
+                        <select class="form-control">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+
+                        월
+                        <select class="form-control">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
+                        </select>
+
+                        일
+                      </div>
                       <label>성별</label>
                       <div class="form-group">
                         <label class="radio-inline">
@@ -253,12 +268,16 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </label>
                       </div>
                       <button type="submit" class="btn btn-primary">
-                       작성 완료
+                        작성 완료
                       </button>
-                      <button type="reset" class="btn btn-danger" id="resetButton">
-                       초기화
+                      <button
+                        type="reset"
+                        class="btn btn-danger"
+                        id="resetButton"
+                      >
+                        초기화
                       </button>
-                   </form>
+                    </form>
                   </div>
                   <!-- /.col-lg-6 (nested) -->
                 </div>
@@ -275,7 +294,54 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
+    <script>
+      //이메일 체크
+      var emailChk = false;
+      $(emailbtn).click(function () {
+        var email = $("email").val();
+        $.ajax({
+          type: "post",
+          url: "/emailcheck",
+          data: { email: email },
+          dataType: "JSON",
+          success: function (obj) {
+            console.log(obj);
+            if (obj.mailCheck != 1) {
+              alert("사용할 수 있는 이메일입니다.");
+              emailChk = true;
+            } else {
+              alert("이미 사용중인 이메일입니다.");
+            }
+          },
+          error: function (e) {
+            console.log(e);
+          },
+        });
+      });
 
+      var nicknameChk = false;
+      $(nicknamebtn).click(function () {
+        var nickname = $("nickname").val();
+        $.ajax({
+          type: "post",
+          url: "/nicknamecheck",
+          data: { nickname: nickname },
+          dataType: "JSON",
+          success: function (obj) {
+            console.log(obj);
+            if (obj.nicknameCheck != 1) {
+              alert("사용할 수 있는 닉네임입니다.");
+              nicknameChk = true;
+            } else {
+              alert("이미 사용중인 닉네임입니다.");
+            }
+          },
+          error: function (e) {
+            console.log(e);
+          },
+        });
+      });
+    </script>
     <!-- jQuery -->
     <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>
 

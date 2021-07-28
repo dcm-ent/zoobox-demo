@@ -70,5 +70,12 @@
 		where
 			user.user_id = #{userId}
 	</select>
-
+	<select id="checkDuplicatedEmail" parameterType="String" resultType="Integer">
+	      SELECT COUNT(*) FROM user WHERE email=#{email} 
+	</select>
+	
+	<select id="checkDuplicatedNickname" parameterType="String" resultType="Integer">
+	      SELECT COUNT(*) FROM user WHERE nickname=#{nickname}
+	</select>
+	
 </mapper>

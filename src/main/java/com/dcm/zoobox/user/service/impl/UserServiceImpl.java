@@ -1,5 +1,7 @@
 package com.dcm.zoobox.user.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,21 @@ public class UserServiceImpl implements UserService{
 	return mapper.getUser(userId);
 	
 }
+
+	@Override
+	public HashMap<String, Object> checkDuplicatedEmail(String email) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int mailCheck = mapper.checkDuplicatedEmail(email);
+		map.put("mailCheck", mailCheck); //이메일이 존재하면 1, 없으면 0
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> checkDuplicatedNickname(String nickname) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int nickNameCheck = mapper.checkDuplicatedEmail(nickname);
+		map.put("nickNameCheck", nickNameCheck); //닉네임이 존재하면 1, 없으면 0
+		return map;
+	}
 
 }

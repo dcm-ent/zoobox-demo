@@ -1,9 +1,14 @@
 package com.dcm.zoobox.user.controller;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dcm.zoobox.user.model.User;
 import com.dcm.zoobox.user.service.UserService;
@@ -33,4 +38,20 @@ public class UserController {
 	public void createUser(User user) {
 		service.createUser(user);
 	}
+	
+	//이메일 중복확인
+	@PostMapping(value = "/emailcheck")
+	@ResponseBody 
+		public HashMap<String, Object> emoverlay( Model model, @RequestParam String email) {
+			log.info("고객이 입력한 이메일 : "+email);
+			return service.checkDuplicatedEmail(email);
+		}
+	//아이디 중복확인
+		@PostMapping(value = "/nicknamecheck")
+		@ResponseBody
+			public HashMap<String, Object> overlay( Model model, @RequestParam String nickname) {
+				log.info("고객이 입력한 닉네임: "+nickname);
+				 return service.checkDuplicatedNickname(nickname);
+			}
+
 }

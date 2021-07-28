@@ -19,13 +19,21 @@ public class UserMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 	
+	/*
+	 * @Test public void testGetUser() { User user = mapper.getUser(1L);
+	 * if(user.getUserRole()==null) { log.info("noooooop"); }else { log.info(user);
+	 * log.info(user.getUserRole().getAuthority()); }}
+	 */
 	@Test
-	public void testGetUser() {
-		User user = mapper.getUser(1L);
-		if(user.getUserRole()==null) {
-			log.info("noooooop");
-		}else {
-		log.info(user);
-		log.info(user.getUserRole().getAuthority());
-		}}
+	public void testEmailDuplicate() {
+		String email="xodls1003@naver.com";
+		int i= mapper.checkDuplicatedEmail(email);
+		log.info(i);
+	}
+	@Test
+	public void testNicknameDuplicate() {
+		String nickname="핑구";
+		int i = mapper.checkDuplicatedNickname(nickname);
+		log.info(i);
+	}
 }
