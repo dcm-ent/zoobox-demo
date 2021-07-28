@@ -54,14 +54,19 @@
 		insert into user_info(user_id)
 		values (#{userId});
 	</insert>
-	<select id="getUser" parameterType="Long" resultType="UserMap">
+	<select id="getUser" parameterType="Long" resultMap="UserMap">
 		select 
-			user.user_id, username, password, email, nickname, birthdate, phone, reg_date, update_date, gender, biz_id, expert_id, role.authority
+			user.user_id, username, password, email, nickname, birthdate, phone, reg_date, update_date, gender, biz_id, expert_id, info.exp, info.status, info.count, info.start_date, role.authority
 		from 
 			user as user
 		join 
 			user_role as role
-		on role.user_id = user.user_id
+		on 
+			role.user_id = user.user_id
+        join 
+			user_info as info
+        on 
+        	info.user_id = user.user_id
 		where
 			user.user_id = #{userId}
 	</select>
