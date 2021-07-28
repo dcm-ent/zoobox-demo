@@ -17,23 +17,23 @@
 		<result property="gender" column="gender"/>
 		<result property="bizId" column="biz_id"/>
 		<result property="expertId" column="expert_id"/>
-		<collection property="userRoleList" resultMap="userRoleMap"/>
-		<collection property="userInfoList" resultMap="userInfoMap"/>
-		<collection property="userSnsInfoList" resultMap="userSnsInfoMap" />
+		<collection property="userRole" resultMap="UserRoleMap"/>
+		<collection property="userInfo" resultMap="UserInfoMap"/>
+		<collection property="userSnsInfo" resultMap="UserSnsInfoMap"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserInfo" id="userInfoMap"> 
-		<result property="userInfoUd" column="user_info_id"/>
+	<resultMap type="com.dcm.zoobox.user.model.UserInfo" id="UserInfoMap"> 
 		<result property="userId" column="user_id"/>
+		<result property="userInfoId" column="user_info_id"/>
 		<result property="exp" column="exp"/>
 		<result property="status" column="status"/>
 		<result property="count" column="count"/>
 		<result property="startDate" column="start_date"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserRole" id="userRoleMap"> 
+	<resultMap type="com.dcm.zoobox.user.model.UserRole" id="UserRoleMap"> 
 		<result property="userId" column="user_id"/>
 		<result property="authority" column="authority"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserSnsInfo" id="userSnsInfoMap"> 
+	<resultMap type="com.dcm.zoobox.user.model.UserSnsInfo" id="UserSnsInfoMap"> 
 		<result property="userSnsInfoId" column="sns_id"/>
 		<result property="userId" column="user_id"/>
 		<result property="snsEmail" column="email"/>
@@ -41,10 +41,10 @@
 	</resultMap>
 	
 	<insert id="createUser" parameterType="UserMap">
-		insert into user(email,password,birthdate,username,nickname,phone,gender)
+		insert into user(email, password, birthdate, username, nickname, phone, gender)
 		values (#{email},#{password},#{birthdate},#{username},#{nickname},#{phone},#{gender});
 		
-		<selectKey keyProperty="userId" order="AFTER" resultType="long">
+		<selectKey keyProperty="userId" order="AFTER" resultType="Long">
 					select last_insert_id() from dual;
 		</selectKey>
 	</insert>
@@ -56,9 +56,12 @@
 	</insert>
 	<select id="getUser" parameterType="Long" resultType="UserMap">
 		select 
-			user.user_id,username,password,email,nickname,birthdate,phone,reg_date,update_date,gender,biz_id,expert_id,user_info_id,exp,status,start_date,authority
+			user.user_id, username, password, email, nickname, birthdate, phone, reg_date, update_date, gender, biz_id, expert_id, role.authority
 		from 
-			user left outer join user_info info on user.user_id = info.user_id left outer join user_role role on user.user_id = role.user_id
+			user as user
+		join 
+			user_role as role
+		on role.user_id = user.user_id
 		where
 			user.user_id = #{userId}
 	</select>

@@ -20,8 +20,8 @@ public class User {
 	private String gender;
 	private Long bizId;
 	private Long expertId;
-	private List<UserInfo> userInfoList;
-	private List<UserRole> userRoleList;
-	private List<UserSnsInfo> userSnsInfoList;
+	private UserInfo userInfo;
+	private UserRole userRole;
+	private UserSnsInfo userSnsInfo;
 	
 }

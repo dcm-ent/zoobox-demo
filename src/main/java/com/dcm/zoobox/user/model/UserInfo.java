@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class UserInfo {
-	private Long userInfoUd;
+	private Long userInfoId;
 	private Long userId;
 	private int exp;
 	private int status;

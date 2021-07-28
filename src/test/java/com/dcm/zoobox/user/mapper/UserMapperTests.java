@@ -22,7 +22,10 @@ public class UserMapperTests {
 	@Test
 	public void testGetUser() {
 		User user = mapper.getUser(1L);
-		
+		if(user.getUserRole()==null) {
+			log.info("noooooop");
+		}else {
 		log.info(user);
-	}
+		log.info(user.getUserRole().getAuthority());
+		}}
 }
