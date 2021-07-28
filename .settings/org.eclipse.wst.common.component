@@ -4,7 +4,7 @@
 		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="mysql-connector-java-8.0.25.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/zoobox/src/main/webapp/resources/lib/mysql-connector-java-8.0.25.jar">
+        <dependent-module archiveName="mysql-connector-java-8.0.25.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/zoobox-demo/src/main/webapp/resources/lib/mysql-connector-java-8.0.25.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
 		<property name="java-output-path" value="target/classes"/>
