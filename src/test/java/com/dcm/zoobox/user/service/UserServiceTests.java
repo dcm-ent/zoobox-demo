@@ -28,7 +28,7 @@ public class UserServiceTests {
 	
 	@Test
 	public void testCheckNickname() {
-		Map<String,Object> map =service.checkDuplicatedNickname("팡구");
+		Map<String,Object> map =service.checkDuplicatedNickname("스퍼스");
 		log.info(map+"===============================");
 	}
 	

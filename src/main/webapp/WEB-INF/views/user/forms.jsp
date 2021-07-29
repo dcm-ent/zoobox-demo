@@ -115,17 +115,22 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       <div class="form-group" id="flex">
                         <input
                           class="form-control"
+                          id="emailInput"
                           placeholder="이메일을 입력해주세요"
                           name="email"
-                          value="email"
+                         
                         />
                         <span class="input-group-addon">@</span>
-                        <select class="form-control">
+                        <select class="form-control" id="emailInput2">
                           <option>naver.com</option>
                           <option>gmail.com</option>
                           <option>gmail.com</option>
                         </select>
-                        <button class="btn btn-default emailbtn" type="button">
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailBtn"
+                        >
                           중복확인
                         </button>
                       </div>
@@ -154,10 +159,12 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       <div class="form-group" id="flex">
                         <input
                           class="form-control"
+                          id="nicknameInput"
                           placeholder="닉네임을 입력해주세요"
                         />
                         <button
-                          class="btn btn-default nicknamebtn"
+                          class="btn btn-default"
+                          id="nicknameBtn"
                           type="button"
                         >
                           중복확인
@@ -294,54 +301,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <script>
-      //이메일 체크
-      var emailChk = false;
-      $(emailbtn).click(function () {
-        var email = $("email").val();
-        $.ajax({
-          type: "post",
-          url: "/emailcheck",
-          data: { email: email },
-          dataType: "JSON",
-          success: function (obj) {
-            console.log(obj);
-            if (obj.mailCheck != 1) {
-              alert("사용할 수 있는 이메일입니다.");
-              emailChk = true;
-            } else {
-              alert("이미 사용중인 이메일입니다.");
-            }
-          },
-          error: function (e) {
-            console.log(e);
-          },
-        });
-      });
 
-      var nicknameChk = false;
-      $(nicknamebtn).click(function () {
-        var nickname = $("nickname").val();
-        $.ajax({
-          type: "post",
-          url: "/nicknamecheck",
-          data: { nickname: nickname },
-          dataType: "JSON",
-          success: function (obj) {
-            console.log(obj);
-            if (obj.nicknameCheck != 1) {
-              alert("사용할 수 있는 닉네임입니다.");
-              nicknameChk = true;
-            } else {
-              alert("이미 사용중인 닉네임입니다.");
-            }
-          },
-          error: function (e) {
-            console.log(e);
-          },
-        });
-      });
-    </script>
     <!-- jQuery -->
     <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>
 
@@ -353,5 +313,57 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
     <!-- Custom Theme JavaScript -->
     <script src="/zoobox/resources/dist/js/sb-admin-2.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        //이메일 체크
+        var emailChk = false;
+
+        $("#emailBtn").click(function () {
+          var email = $("#emailInput").val() +"@"+ $("#emailInput2").val();
+          $.ajax({
+            type: "post",
+            url: "/zoobox/user/emailcheck",
+            data: { email: email },
+            dataType: "JSON",
+            success: function (obj) {
+              console.log(obj);
+              if (obj.mailCheck != 1) {
+                alert("사용할 수 있는 이메일입니다.");
+                emailChk = true;
+              } else {
+                alert("이미 사용중인 이메일입니다.");
+              }
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        });
+
+        var nicknameChk = false;
+        $("#nicknameBtn").click(function () {
+          var nickname = $("#nicknameInput").val();
+          $.ajax({
+            type: "post",
+            url: "/zoobox/user/nicknamecheck",
+            data: { nickname: nickname },
+            dataType: "JSON",
+            success: function (obj) {
+              console.log(obj);
+              if (obj.nicknameCheck != 1) {
+                alert("사용할 수 있는 닉네임입니다.");
+                nicknameChk = true;
+              } else {
+                alert("이미 사용중인 닉네임입니다.");
+              }
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>

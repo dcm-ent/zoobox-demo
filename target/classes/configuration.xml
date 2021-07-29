@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings> 
 	
 	<typeAliases>
-		<typeAlias alias="UserMap" type="com.dcm.zoobox.user.model.User"/>
-		<typeAlias alias="UserInfoMap" type="com.dcm.zoobox.user.model.UserInfo"/>
-		<typeAlias alias="UserRoleMap" type="com.dcm.zoobox.user.model.UserRole"/>
-		<typeAlias alias="UserSnsInfoMap" type="com.dcm.zoobox.user.model.UserSnsInfo"/>
-		<typeAlias alias="article" type="com.dcm.zoobox.article.model.Article"/>
-		<typeAlias alias="place" type="com.dcm.zoobox.place.model.Place"/>
+		<typeAlias alias="User" type="com.dcm.zoobox.user.model.User"/>
+		<typeAlias alias="UserInfo" type="com.dcm.zoobox.user.model.UserInfo"/>
+		<typeAlias alias="UserRole" type="com.dcm.zoobox.user.model.UserRole"/>
+		<typeAlias alias="UserSnsInfo" type="com.dcm.zoobox.user.model.UserSnsInfo"/>
+		<typeAlias alias="Article" type="com.dcm.zoobox.article.model.Article"/>
+		<typeAlias alias="Place" type="com.dcm.zoobox.place.model.Place"/>
 	</typeAliases>
 	
 	<mappers>
