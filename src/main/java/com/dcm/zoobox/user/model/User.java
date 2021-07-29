@@ -1,10 +1,9 @@
 package com.dcm.zoobox.user.model;
 
 
-import java.util.Date;
-import java.util.List;
+import lombok.*;
 
-import lombok.Data;
+import java.util.Date;
 
 @Data
 public class User {
@@ -23,5 +22,6 @@ public class User {
 	private UserInfo userInfo;
 	private UserRole userRole;
 	private UserSnsInfo userSnsInfo;
-	
+
+
 }
