@@ -61,5 +61,8 @@ public class UserController {
 				
 				return service.checkDuplicatedNickname(nickname);
 			}
+		
+		
+		//test
 
 }
