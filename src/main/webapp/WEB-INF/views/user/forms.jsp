@@ -371,6 +371,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         });
         if (emailChk == false) {
           $("#emailSendDiv").hide();
+        } else {
+          $("#emailSendDiv").show();
         }
       });
     </script>
