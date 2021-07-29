@@ -46,9 +46,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public HashMap<String, Object> checkDuplicatedNickname(String nickname) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int nickNameCheck = mapper.checkDuplicatedEmail(nickname);
-		log.info(nickname+ nickNameCheck+"============================================");
-		map.put("nickNameCheck", nickNameCheck); //닉네임이 존재하면 1, 없으면 0
+		int nicknameCheck = mapper.checkDuplicatedNickname(nickname);
+		map.put("nicknameCheck", nicknameCheck); //닉네임이 존재하면 1, 없으면 0
 		return map;
 	}
 
