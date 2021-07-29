@@ -17,18 +17,18 @@ public class BusiRestController {
     @GetMapping("/validate")
     @ResponseBody
     public String searchBusinessNumber(@PathVariable String number) throws Exception {
-        System.out.println("½ÇÇà"+number);
-        //»ç¾÷ÀÚ ¹øÈ£
+        System.out.println("ï¿½ï¿½ï¿½ï¿½"+number);
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
        // String number="8108600658";
         String EncodingKey="n9dAG9GLBclIr6pTa1ONRq4D7DJMgtONggPCq7Hn7p53X0W2cfaH9GaESxKRyqxmB8md07hNTg30b9sdkzqZYg%3D%3D";
         String DecodingKey="n9dAG9GLBclIr6pTa1ONRq4D7DJMgtONggPCq7Hn7p53X0W2cfaH9GaESxKRyqxmB8md07hNTg30b9sdkzqZYg==";
         String url="api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="+EncodingKey+"&b_no="+number+"&returnType=JSON";
 
 
-        //   1È¸ È£Ãâ ½Ã ÃÖ´ë 100°³¿¡ ÇØ´çÇÏ´Â »ç¾÷ÀÚµî·ÏÁ¤º¸ÀÇ ÁøÀ§È®ÀÎ ¶Ç´Â »ç¾÷ÀÚµî·Ï »óÅÂÁ¶È¸°¡ °¡´ÉÇÕ´Ï´Ù.
-        //  100°³ ÃÊ°ú ½Ã¿¡´Â Too Large Request Error °¡ ¹ß»ýÇÕ´Ï´Ù. (* ÇÏ´ÜÀÇ Too Large Request Error ºÎºÐÀ» Âü°íÇØÁÖ¼¼¿ä)
+        //   1È¸ È£ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ 100ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+        //  100ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ã¿ï¿½ï¿½ï¿½ Too Large Request Error ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Õ´Ï´ï¿½. (* ï¿½Ï´ï¿½ï¿½ï¿½ Too Large Request Error ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½)
         //returnType=JSON (Default)
-        // http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=[¼­ºñ½ºÅ°]&returnType=XML
+        // http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=[ï¿½ï¿½ï¿½ï¿½Å°]&returnType=XML
 
         ModelAndView mv=new ModelAndView();
 
@@ -37,9 +37,9 @@ public class BusiRestController {
 
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("businessCheckMap",businessCheckMap);
-        System.out.println("°Ë»ö °á°ú: "+jsonObject.toString());
+        System.out.println("ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½: "+jsonObject.toString());
 
-        //È­¸é ÁÖ¼Ò
+        //È­ï¿½ï¿½ ï¿½Ö¼ï¿½
 
         return jsonObject.toString();
     }
@@ -104,4 +104,4 @@ public class BusiRestController {
         return resultMap;
 
 
-    }
+    }}
