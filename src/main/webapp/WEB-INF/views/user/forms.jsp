@@ -133,18 +133,34 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           중복확인
                         </button>
                       </div>
-                      <div class="form-group" id="emailSendDiv">
+                      <div class="form-group" id="emailConfirmDiv">
                         <label>이메일인증</label>
                         <input
                           class="form-control"
                           placeholder="인증번호를 입력해주세요"
+                          id="emailConfirmInput"
+                          name="emailConfirmInput"
                         />
                         <button
                           class="btn btn-default"
                           type="button"
-                          id="emailBtn"
+                          id="emailSendBtn"
                         >
                           인증번호 발송
+                        </button>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailConfirmBtn"
+                        >
+                          인증번호 확인
+                        </button>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailResendBtn"
+                        >
+                         재전송
                         </button>
                       </div>
                       <div class="form-group">
@@ -324,7 +340,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       $(document).ready(function () {
         //이메일 체크
         var emailChk = false;
-
+        $("#emailConfirmDiv").hide();
         $("#emailBtn").click(function () {
           var email = $("#emailInput").val() + "@" + $("#emailInput2").val();
           $.ajax({
@@ -335,8 +351,10 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             success: function (obj) {
               console.log(obj);
               if (obj.mailCheck != 1) {
-                alert("사용할 수 있는 이메일입니다.");
                 emailChk = true;
+                $("#emailConfirmDiv").show();
+                alert("사용할 수 있는 이메일입니다.");
+                console.log(emailChk);
               } else {
                 alert("이미 사용중인 이메일입니다.");
               }
@@ -346,7 +364,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             },
           });
         });
-
+		//닉네임체크
         var nicknameChk = false;
         $("#nicknameBtn").click(function () {
           var nickname = $("#nicknameInput").val();
@@ -358,8 +376,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             success: function (obj) {
               console.log(obj);
               if (obj.nicknameCheck != 1) {
-                alert("사용할 수 있는 닉네임입니다.");
                 nicknameChk = true;
+                alert("사용할 수 있는 닉네임입니다.");
               } else {
                 alert("이미 사용중인 닉네임입니다.");
               }
@@ -369,11 +387,53 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             },
           });
         });
-        if (emailChk == false) {
-          $("#emailSendDiv").hide();
-        } else {
-          $("#emailSendDiv").show();
-        }
+		var emailConfirmChk = false;
+        $("#emailConfirmBtn").hide();
+		$("#emailResendBtn").hide();
+       //이메일 인증번호 전송시 이벤트
+		$("#emailSendBtn").click(function(){
+    	  $("#emailSendBtn").hide();
+    	  $("#emailConfirmBtn").show();
+    	  $("#emailResendBtn").show();
+    	 var emailConfirmNum = Math.floor(Math.random()*900000+100000);
+    	 //5분타이머
+    	 
+    	 var setTime = 5;
+    	 function msgTimer(){
+    		 
+    	 }
+    	 
+    	 console.log(emailConfirmNum);
+    	 
+    	 $("#emailResendBtn").click(function(){
+    		 emailConfirmNum = Math.floor(Math.random()*900000+100000);
+        	 console.log(emailConfirmNum);
+        	 alert("인증번호가 재전송됬습니다.");
+    	 });
+    	 //인증번호 입력시 이벤트
+    	 $("#emailConfirmBtn").click(function(){
+       	 
+    		 if($("#emailConfirmInput").val() == emailConfirmNum){
+       		  
+       		  console.log(emailConfirmNum);
+       		  emailConfirmChk= true;
+       		  alert("인증이 완료되었습니다.");
+       		 $("#emailConfirmDiv").hide();
+       	  }else{
+       		  alert("인증번호가 틀렸습니다 다시 확인해주세요.")
+       	  }
+         });
+		
+		});
+       //초기화버튼 클릭시 이벤트
+     $("#resetButton").click(function(){
+    	 $("#emailConfirmDiv").hide();
+    	 var emailChk = false;
+    	 var nicknameChk = false;
+    	 var emailConfirmChk = false;
+     })
+  
+     
       });
     </script>
   </body>
