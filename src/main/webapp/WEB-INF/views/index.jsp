@@ -1,16 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/resources/dist/css/comm.css" />
+    <link rel="stylesheet" href="/zoobox/resources/dist/css/comm.css" />
     <title>ZOOBOX</title>
   </head>
   <body>
     <header>
       <div class="header_box">
-        <figure><img src="/resources/img/logo.png" alt="" /></figure>
+        <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
         <ul class="menu">
           <li>홈</li>
           <li>플레이스</li>
@@ -20,10 +22,10 @@
         </ul>
         <input type="search" placeholder="Search" />
         <ul class="alarm">
-          <li><img src="/resources/img/icon1.png" alt="" /></li>
-          <li><img src="/resources/img/icon2.png" alt="" /></li>
-          <li><img src="/resources/img/icon3.png" alt="" /></li>
-          <li><img src="/resources/img/icon4.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon1.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon2.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon3.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon4.png" alt="" /></li>
         </ul>
       </div>
     </header>
@@ -36,33 +38,33 @@
     </div>
     <div class="main_contents">
       <div class="left_content">
-        <figure><img src="/resources/img/side_menu.png" alt="" /></figure>
+        <figure><img src="/zoobox/resources/img/side_menu.png" alt="" /></figure>
         <button>
-          <img src="/resources/img/side_menu_bt.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_bt.png" alt="" />
           <p>전체</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_dog.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_dog.png" alt="" />
           <p>강아지</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_cat.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_cat.png" alt="" />
           <p>고양이</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_etc.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_etc.png" alt="" />
           <p>기타동물</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_event.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_event.png" alt="" />
           <p>이벤트</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_notice.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_notice.png" alt="" />
           <p>공지사항</p>
         </button>
         <button>
-          <img src="/resources/img/side_menu_setting.png" alt="" />
+          <img src="/zoobox/resources/img/side_menu_setting.png" alt="" />
           <p>설정</p>
         </button>
       </div>
@@ -72,7 +74,7 @@
             <h3>추천 핫 플레이스</h3>
             <ul>
               <li>
-                <figure><img src="/resources/img/place1.png" alt="" /></figure>
+                <figure><img src="/zoobox/resources/img/place1.png" alt="" /></figure>
                 <p>경기도 이천시</p>
                 <h6>시몬스 테라스점</h6>
                 <p>
@@ -81,7 +83,7 @@
                 </p>
               </li>
               <li>
-                <figure><img src="/resources/img/place2.png" alt="" /></figure>
+                <figure><img src="/zoobox/resources/img/place2.png" alt="" /></figure>
                 <p>경기도 포천시</p>
                 <h6>달빛 애견글램핑</h6>
                 <p>
@@ -90,7 +92,7 @@
                 </p>
               </li>
               <li>
-                <figure><img src="/resources/img/place3.png" alt="" /></figure>
+                <figure><img src="/zoobox/resources/img/place3.png" alt="" /></figure>
                 <p>경기도 여주시</p>
                 <h6>플러피펍</h6>
                 <p>애견동반 카페 겸 운동장입니다. 월 - 화는 12:00 - 19:00,</p>
@@ -104,7 +106,7 @@
                 <h5>래플레즈 동물병원</h5>
                 <p>경기도 구리시</p>
               </div>
-              <img src="/resources/img/star.png" alt="" />
+              <img src="/zoobox/resources/img/star.png" alt="" />
               <h6>5.0</h6>
             </div>
           </div>
@@ -134,11 +136,11 @@
             <button>장례</button>
           </div>
           <div class="area_map">
-            <div><img src="/resources/img/area.png" alt="" /></div>
+            <div><img src="/zoobox/resources/img/area.png" alt="" /></div>
             <div>
               <div>
                 <h4>서울</h4>
-                <button><img src="/resources/img/plus.png" alt="" /></button>
+                <button><img src="/zoobox/resources/img/plus.png" alt="" /></button>
               </div>
               <div class="area_data">
                 <div>
