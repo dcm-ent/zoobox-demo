@@ -118,7 +118,6 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           id="emailInput"
                           placeholder="이메일을 입력해주세요"
                           name="email"
-                         
                         />
                         <span class="input-group-addon">@</span>
                         <select class="form-control" id="emailInput2">
@@ -134,12 +133,19 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           중복확인
                         </button>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group" id="emailSendDiv">
                         <label>이메일인증</label>
                         <input
                           class="form-control"
                           placeholder="인증번호를 입력해주세요"
                         />
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailBtn"
+                        >
+                          인증번호 발송
+                        </button>
                       </div>
                       <div class="form-group">
                         <label>패스워드</label>
@@ -320,7 +326,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         var emailChk = false;
 
         $("#emailBtn").click(function () {
-          var email = $("#emailInput").val() +"@"+ $("#emailInput2").val();
+          var email = $("#emailInput").val() + "@" + $("#emailInput2").val();
           $.ajax({
             type: "post",
             url: "/zoobox/user/emailcheck",
@@ -363,6 +369,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             },
           });
         });
+        if (emailChk == false) {
+          $("#emailSendDiv").hide();
+        }
       });
     </script>
   </body>
