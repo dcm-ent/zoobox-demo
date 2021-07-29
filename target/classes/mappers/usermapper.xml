@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.dcm.zoobox.user.mapper.UserMapper" >
-	<resultMap type="com.dcm.zoobox.user.model.User" id="UserMap">
+	<resultMap type="User" id="UserMap">
 		<id property="userId" column="user_id"/>
 		<result property="password" column="password"/>
 		<result property="username" column="username"/>
@@ -21,7 +21,7 @@
 		<collection property="userInfo" resultMap="UserInfoMap"/>
 		<collection property="userSnsInfo" resultMap="UserSnsInfoMap"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserInfo" id="UserInfoMap"> 
+	<resultMap type="UserInfo" id="UserInfoMap"> 
 		<result property="userId" column="user_id"/>
 		<result property="userInfoId" column="user_info_id"/>
 		<result property="exp" column="exp"/>
@@ -29,18 +29,18 @@
 		<result property="count" column="count"/>
 		<result property="startDate" column="start_date"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserRole" id="UserRoleMap"> 
+	<resultMap type="UserRole" id="UserRoleMap"> 
 		<result property="userId" column="user_id"/>
 		<result property="authority" column="authority"/>
 	</resultMap>
-	<resultMap type="com.dcm.zoobox.user.model.UserSnsInfo" id="UserSnsInfoMap"> 
+	<resultMap type="UserSnsInfo" id="UserSnsInfoMap"> 
 		<result property="userSnsInfoId" column="sns_id"/>
 		<result property="userId" column="user_id"/>
 		<result property="snsEmail" column="email"/>
 		<result property="type" column="type"/>
 	</resultMap>
 	
-	<insert id="createUser" parameterType="UserMap">
+	<insert id="createUser" parameterType="User">
 		insert into user(email, password, birthdate, username, nickname, phone, gender)
 		values (#{email},#{password},#{birthdate},#{username},#{nickname},#{phone},#{gender});
 		
