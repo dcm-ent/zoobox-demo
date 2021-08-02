@@ -11,7 +11,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>zoobox-JoinForm</title>
 
     <!-- Bootstrap Core CSS -->
     <link
@@ -118,7 +118,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           id="emailInput"
                           placeholder="이메일을 입력해주세요"
                           name="email"
-                         
+                          maxlength="64"
                         />
                         <span class="input-group-addon">@</span>
                         <select class="form-control" id="emailInput2">
@@ -134,26 +134,69 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           중복확인
                         </button>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group" id="emailConfirmDiv">
                         <label>이메일인증</label>
                         <input
                           class="form-control"
                           placeholder="인증번호를 입력해주세요"
+                          id="emailConfirmInput"
+                          name="emailConfirmInput"
+                          maxlength="6"
                         />
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailSendBtn"
+                        >
+                          인증번호 발송
+                        </button>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailConfirmBtn"
+                        >
+                          인증번호 확인
+                        </button>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          id="emailResendBtn"
+                        >
+                          재전송
+                        </button>
+                        <div id="viewTimer"></div>
                       </div>
                       <div class="form-group">
                         <label>패스워드</label>
                         <input
+                          type="password"
+                          id="passwordInput1"
                           class="form-control"
-                          placeholder="패스워드를 입력해주세요(10자이상,특수문자포함)"
+                          placeholder="패스워드를 입력해주세요(10자이상,25자이하,특수문자포함)"
+                          maxlength="25"
                         />
+                        <div id="passwordNotice"></div>
                       </div>
                       <div class="form-group">
                         <label>패스워드 확인</label>
                         <input
+                          type="password"
+                          id="passwordInput2"
                           class="form-control"
                           placeholder="패스워드를 확인해주세요"
+                          maxlength="25"
                         />
+                        <div id="passwordNotice2"></div>
+                      </div>
+                      <label>이름</label>
+                      <div class="form-group">
+                        <input
+                          id="nameInput"
+                          class="form-control"
+                          placeholder="이름을 입력해주세요"
+                          maxlength="10"
+                        />
+                        <div id="nameCheck"></div>
                       </div>
                       <label>닉네임</label>
                       <div class="form-group" id="flex">
@@ -161,6 +204,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           class="form-control"
                           id="nicknameInput"
                           placeholder="닉네임을 입력해주세요"
+                          maxlength="25"
                         />
                         <button
                           class="btn btn-default"
@@ -169,6 +213,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         >
                           중복확인
                         </button>
+                        <div id="nicknameCheck"></div>
                       </div>
 
                       <div class="form-group">
@@ -177,6 +222,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <input
                           class="form-control"
                           placeholder="휴대폰 번호를 입력해주세요"
+                          maxlength="20"
+                          type="number"
                         />
                         <button class="btn btn-default" type="button">
                           휴대폰 인증
@@ -197,12 +244,13 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       <div class="form-group" id="flex">
                         <input
                           class="form-control"
+                          id="yearValue"
                           type="text"
                           name="inyear"
                           size="5"
                           class="inBorder"
                         />년
-                        <select class="form-control">
+                        <select class="form-control" name="monthValue">
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -218,7 +266,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </select>
 
                         월
-                        <select class="form-control">
+                        <select class="form-control" name="dayValue">
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -274,7 +322,11 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           />여성
                         </label>
                       </div>
-                      <button type="submit" class="btn btn-primary">
+                      <button
+                        type="submit"
+                        id="submitJoinForm"
+                        class="btn btn-primary"
+                      >
                         작성 완료
                       </button>
                       <button
@@ -318,19 +370,19 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       $(document).ready(function () {
         //이메일 체크
         var emailChk = false;
-
+        $("#emailConfirmDiv").hide();
         $("#emailBtn").click(function () {
-          var email = $("#emailInput").val() +"@"+ $("#emailInput2").val();
+          var email = $("#emailInput").val() + "@" + $("#emailInput2").val();
           $.ajax({
             type: "post",
             url: "/zoobox/user/emailcheck",
             data: { email: email },
             dataType: "JSON",
             success: function (obj) {
-              console.log(obj);
               if (obj.mailCheck != 1) {
-                alert("사용할 수 있는 이메일입니다.");
                 emailChk = true;
+                $("#emailConfirmDiv").show();
+                alert("사용할 수 있는 이메일입니다.");
               } else {
                 alert("이미 사용중인 이메일입니다.");
               }
@@ -341,6 +393,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           });
         });
 
+        //닉네임체크
         var nicknameChk = false;
         $("#nicknameBtn").click(function () {
           var nickname = $("#nicknameInput").val();
@@ -352,8 +405,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             success: function (obj) {
               console.log(obj);
               if (obj.nicknameCheck != 1) {
-                alert("사용할 수 있는 닉네임입니다.");
                 nicknameChk = true;
+                alert("사용할 수 있는 닉네임입니다.");
               } else {
                 alert("이미 사용중인 닉네임입니다.");
               }
@@ -362,6 +415,265 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               console.log(e);
             },
           });
+        });
+        var emailConfirmChk = false;
+        $("#emailConfirmBtn").hide();
+        $("#emailResendBtn").hide();
+        $("#viewTimer").hide();
+
+        //이메일 인증번호 전송시 이벤트
+        $("#emailSendBtn").click(function () {
+          $("#emailSendBtn").hide();
+          $("#emailConfirmBtn").show();
+          $("#emailResendBtn").show();
+          $("#viewTimer").show();
+          var emailConfirmNum = Math.floor(Math.random() * 900000 + 100000);
+
+          //5분타이머
+          var time = 300; //기준시간
+          var min = "";
+          var sec = "";
+          var str = "";
+          var timeinterval = setInterval(function () {
+            min = parseInt(time / 60);
+            sec = time % 60;
+
+            str =
+              "<span>" + "남은시간 : " + min + "분" + sec + "초" + "</span>";
+            time--;
+            if (time < 0) {
+              clearInterval(timeinterval);
+              str = "입력시간이 종료되었습니다.재전송버튼을 눌러주세요";
+            }
+            $("#viewTimer").html(str);
+          }, 1000);
+
+          console.log(emailConfirmNum);
+
+          $("#emailResendBtn").click(function () {
+            emailConfirmNum = Math.floor(Math.random() * 900000 + 100000);
+            console.log(emailConfirmNum);
+            time = 300;
+            alert("인증번호가 재전송됬습니다.");
+          });
+          //인증번호 입력시 이벤트
+          $("#emailConfirmBtn").click(function () {
+            if ($("#emailConfirmInput").val() == emailConfirmNum) {
+              console.log(emailConfirmNum);
+              emailConfirmChk = true;
+              alert("인증이 완료되었습니다.");
+              clearInterval(timeinterval);
+              $("#emailConfirmDiv").hide();
+            } else {
+              alert("인증번호가 틀렸습니다 다시 확인해주세요.");
+            }
+          });
+        });
+        //닉네임 제약
+        var nicknameChk2 = false;
+        var nickname = "";
+        var str3 = "";
+        $("#nicknameInput").on("input", function () {
+          str3 = "";
+          nickname = $("#nicknameInput").val();
+          var spec = nickname.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+          if (nickname.length < 3) {
+            str3 = "";
+            $("#nicknameInput").css("border-color", "#ff0000");
+            str3 =
+              "<span style='color:red'>" +
+              "닉네임은 세글자 이상 입력하셔야 합니다." +
+              "</span>";
+            $("#nicknameCheck").html(str3);
+          } else if (spec >= 0) {
+            str3 = "";
+            $("#nicknameInput").css("border-color", "#ff0000");
+            str3 =
+              "<span style='color:red'>" +
+              "닉네임은 특수문자를 포함할 수 없습니다." +
+              "</span>";
+            $("#nicknameCheck").html(str3);
+          } else if (nickname.search(/\s/) != -1) {
+            str3 = "";
+            $("#nicknameInput").css("border-color", "#ff0000");
+            str3 =
+              "<span style='color:red'>" +
+              "닉네임은 공백없이 입력해주세요." +
+              "</span>";
+            $("#nicknameCheck").html(str3);
+          } else {
+            str3 = "";
+
+            $("#nicknameCheck").html(str3);
+            nicknameChk2 = true;
+            $("#nicknameInput").css("border-color", "#00ff2f");
+          }
+        });
+        //이름 제약
+        var nameChk = false;
+        var name = "";
+        var str4 = "";
+        $("#nameInput").on("input", function () {
+          str4 = "";
+          name = $("#nameInput").val();
+          var speci = name.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+          if (name.length < 2) {
+            str4 = "";
+            $("#nameInput").css("border-color", "#ff0000");
+            str4 =
+              "<span style='color:red'>" +
+              "이름은 두글자 이상 입력하셔야 합니다." +
+              "</span>";
+            $("#nameCheck").html(str4);
+          } else if (speci >= 0) {
+            str4 = "";
+            $("#nameInput").css("border-color", "#ff0000");
+            str4 =
+              "<span style='color:red'>" +
+              "이름은 특수문자를 포함할 수 없습니다." +
+              "</span>";
+            $("#nameCheck").html(str4);
+          } else if (name.search(/\s/) != -1) {
+            str4 = "";
+            $("#nameInput").css("border-color", "#ff0000");
+            str4 =
+              "<span style='color:red'>" +
+              "이름은 공백없이 입력해주세요." +
+              "</span>";
+            $("#nameCheck").html(str4);
+          } else {
+            str4 = "";
+
+            $("#nameCheck").html(str4);
+            nameChk = true;
+            $("#nameInput").css("border-color", "#00ff2f");
+          }
+        });
+
+        var password1 = "";
+        var password2 = "";
+        var passwordCheck1 = false;
+        var passwordCheck2 = false;
+        var str1 = "";
+        //비밀번호 제약
+        $("#passwordInput1").on("input", function () {
+          str1 = "";
+          password1 = $("#passwordInput1").val();
+          password2 = $("#passwordInput2").val();
+          var num = password1.search(/[0-9]/g);
+          var eng = password1.search(/[a-z]/gi);
+          var spe = password1.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+          if (password1.length < 10) {
+            str1 = "";
+            $("#passwordInput1").css("border-color", "#ff0000");
+            str1 =
+              "<span style='color:red'>" +
+              "비밀번호는 10자 이상입력하셔야 합니다." +
+              "</span>";
+            $("#passwordNotice").html(str1);
+          } else if (password1.search(/\s/) != -1) {
+            str1 = "";
+            $("#passwordInput1").css("border-color", "#ff0000");
+            str1 =
+              "<span style='color:red'>" +
+              "비밀번호는 공백없이 입력해주세요." +
+              "</span>";
+            $("#passwordNotice").html(str1);
+          } else if (num < 0 || eng < 0 || spe < 0) {
+            str1 = "";
+            $("#passwordInput1").css("border-color", "#ff0000");
+            str1 =
+              "<span style='color:red'>" +
+              "영문,숫자, 특수문자를 혼합하여 입력해주세요." +
+              "</span>";
+            $("#passwordNotice").html(str1);
+          } else {
+            str1 = "";
+            $("#passwordNotice").html(str1);
+            passwordCheck1 = true;
+            $("#passwordInput1").css("border-color", "#00ff2f");
+          }
+        });
+        //비밀번호 확인 제약
+        var str2 = "";
+        $("#passwordInput2").on("input", function () {
+          str2 = "";
+          password1 = $("#passwordInput1").val();
+          password2 = $("#passwordInput2").val();
+
+          if (password2 != password1) {
+            str2 = "";
+            $("#passwordInput2").css("border-color", "#ff0000");
+            str2 =
+              "<span style='color:red'>" +
+              "패스워드가 일치하지 않습니다." +
+              "</span>";
+            $("#passwordNotice2").html(str2);
+          } else {
+            $("#passwordInput2").css("border-color", "#00ff2f");
+            str2 = "";
+            $("#passwordNotice2").html(str2);
+            passwordCheck2 = true;
+          }
+        });
+
+        //초기화버튼 클릭시 이벤트
+        $("#resetButton").click(function () {
+          $("#emailConfirmDiv").hide();
+          $("#nicknameInput").css("border-color", "#d5d5d5");
+          $("#nameInput").css("border-color", "#d5d5d5");
+          $("#passwordInput1").css("border-color", "#d5d5d5");
+          $("#passwordInput2").css("border-color", "#d5d5d5");
+          emailChk = false;
+          nicknameChk = false;
+          emailConfirmChk = false;
+          passwordCheck1 == false;
+          passwordCheck2 == false;
+          nicknameChk2 = false;
+          nameChk = false;
+          str1 = "";
+          str2 = "";
+          str3 = "";
+          str4 = "";
+          $("#passwordNotice").html(str1);
+          $("#passwordNotice2").html(str2);
+          $("#nicknameCheck").html(str3);
+          $("#nameCheck").html(str4);
+        });
+
+        //작성완료 버튼 이벤트
+        $("#submitJoinForm").click(function () {
+          password1 = $("#passwordInput1").val();
+          password2 = $("#passwordInput2").val();
+          console.log("emailChk = " + emailChk);
+          console.log("nicknameChk = " + nicknameChk);
+          console.log("emailConfirmChk = " + emailConfirmChk);
+          console.log("passwordCheck1 = " + passwordCheck1);
+          console.log("passwordCheck2 = " + passwordCheck2);
+          if (emailChk == false) {
+            alert("이메일 중복확인을 해주세요.");
+            return false;
+          }
+          if (emailConfirmChk == false) {
+            alert("이메일 인증을 해주세요.");
+            return false;
+          }
+          if (passwordCheck1 == false) {
+            alert("적절한 패스워드를 입력해주세요.");
+            return false;
+          }
+          if (passwordCheck2 == false) {
+            alert("패스워드를 확인하셔야 합니다.");
+            return false;
+          }
+          if (nicknameChk == false) {
+            alert("닉네임 중복확인을 해주세요.");
+            return false;
+          }
+          if (nicnameChk == false) {
+            alert("적절한 닉네임을 입력해주세요");
+            return false;
+          }
         });
       });
     </script>

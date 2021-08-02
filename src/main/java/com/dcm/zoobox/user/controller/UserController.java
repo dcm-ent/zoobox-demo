@@ -42,6 +42,9 @@ public class UserController {
 		service.createUser(user);
 	}
 	
+	
+	
+	
 	//이메일 중복확인
 	@PostMapping(value = "/emailcheck")
 	@ResponseBody 
@@ -58,5 +61,8 @@ public class UserController {
 				
 				return service.checkDuplicatedNickname(nickname);
 			}
+		
+		
+		//test
 
 }
