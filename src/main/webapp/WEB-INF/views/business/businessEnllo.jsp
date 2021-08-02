@@ -167,10 +167,11 @@
 //국세청
     function search_business_number(){
         const number= $('#businessNumber').val();
+        alert(number);
         $.ajax({
             type:"post",
-            url:'${path}/rest/validate',
-            contentType :"application/json",
+            url:'${path}/html',
+         //   contentType :"application/json",
             data:{number:number},
            // dataType:"json",
             success:function(data,status,xhr){
