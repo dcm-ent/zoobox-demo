@@ -1,4 +1,4 @@
-package com.dcm.zoobox.article.model;
+package com.dcm.zoobox.community.model;
 
 import lombok.Data;
 

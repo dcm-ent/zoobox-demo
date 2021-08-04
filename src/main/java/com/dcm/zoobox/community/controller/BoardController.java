@@ -1,4 +1,4 @@
-package com.dcm.zoobox.board.controller;
+package com.dcm.zoobox.community.controller;
 
 import java.util.Map;
 
@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dcm.zoobox.board.service.BoardService;
+import com.dcm.zoobox.community.service.BoardService;
+
 
 @Controller
 @RequestMapping("/board")

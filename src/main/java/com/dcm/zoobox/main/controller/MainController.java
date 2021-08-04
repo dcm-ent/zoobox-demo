@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dcm.zoobox.board.service.BoardService;
+import com.dcm.zoobox.community.service.BoardService;
 import com.dcm.zoobox.main.model.Main;
 
 import lombok.extern.log4j.Log4j;

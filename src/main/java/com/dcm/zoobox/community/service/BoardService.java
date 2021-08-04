@@ -1,10 +1,10 @@
-package com.dcm.zoobox.board.mapper;
+package com.dcm.zoobox.community.service;
 
 import java.util.List;
 
 import com.dcm.zoobox.main.model.Main;
 
-public interface BoardMapper {
+public interface BoardService {
 
 	List<Main> getPortletList();
 

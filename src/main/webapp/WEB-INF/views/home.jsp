@@ -1,25 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<c:url value='/resources/dist/css/comm.css' />"   />
+    <link rel="stylesheet" href="<c:url value='/resources/dist/css/comm.css' />" />
     <title>ZOOBOX</title>
   </head>
   <body>
     <header>
-		 <div class="header_box">
-        <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
+      <div class="header_box">
+        <figure><img src="../../resources/img/logo.png" alt="" /></figure>
         <ul class="menu">
-          <c:forEach var="menu" items="${portletList}" varStatus="status">
-          	<li><a href="<c:url value='${menu.url }' />  ">${menu.name}</a></li>
-          </c:forEach>
+          <li>홈</li>
+          <li>플레이스</li>
+          <li>커뮤니티</li>
+          <li>에듀</li>
+          <li>스토어</li>
         </ul>
         <input type="search" placeholder="Search" />
+        <ul class="alarm">
+          <li><img src="/zoobox/resources/img/icon1.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon2.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon3.png" alt="" /></li>
+          <li><img src="/zoobox/resources/img/icon4.png" alt="" /></li>
+        </ul>
       </div>
     </header>
     <div class="main_bg">
@@ -67,7 +74,9 @@
             <h3>추천 핫 플레이스</h3>
             <ul>
               <li>
-                <figure><img src="/zoobox/resources/img/place1.png" alt="" /></figure>
+                <figure>
+                  <img src="/zoobox/resources/img/place1.png" alt="" />
+                </figure>
                 <p>경기도 이천시</p>
                 <h6>시몬스 테라스점</h6>
                 <p>
@@ -76,7 +85,9 @@
                 </p>
               </li>
               <li>
-                <figure><img src="/zoobox/resources/img/place2.png" alt="" /></figure>
+                <figure>
+                  <img src="/zoobox/resources/img/place2.png" alt="" />
+                </figure>
                 <p>경기도 포천시</p>
                 <h6>달빛 애견글램핑</h6>
                 <p>
@@ -85,7 +96,9 @@
                 </p>
               </li>
               <li>
-                <figure><img src="/zoobox/resources/img/place3.png" alt="" /></figure>
+                <figure>
+                  <img src="/zoobox/resources/img/place3.png" alt="" />
+                </figure>
                 <p>경기도 여주시</p>
                 <h6>플러피펍</h6>
                 <p>애견동반 카페 겸 운동장입니다. 월 - 화는 12:00 - 19:00,</p>
@@ -129,11 +142,13 @@
             <button>장례</button>
           </div>
           <div class="area_map">
-            <div><img src="/zoobox/resources/img/area.png" alt="" /></div>
+            <div></div>
             <div>
               <div>
                 <h4>서울</h4>
-                <button><img src="/zoobox/resources/img/plus.png" alt="" /></button>
+                <button>
+                  <img src="/zoobox/resources/img/plus.png" alt="" />
+                </button>
               </div>
               <div class="area_data">
                 <div>
@@ -145,9 +160,38 @@
             </div>
           </div>
         </div>
-        <div class="slide_bg"></div>
-        <div class="banner"></div>
-        <div class="tips"></div>
+        <div class="new_place">
+          <div>
+            <h3>신규 등록 장소</h3>
+            <ul>
+              <li>
+                <img src="/zoobox/resources/img/new_place1_1.png" alt="" />
+                <p>서울특별시 강북구</p>
+                <h6>카페 달세뇨</h6>
+                <p>
+                  맛있는 커피와 깨끗한 인테리어, 인스타 감성 예쁜 카페입니다.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3>서울권 추천 장소! 이런 장소는 어떠세요?</h3>
+            <ul>
+              <li>
+                <img src="/zoobox/resources/img/new_place2_1.png" alt="" />
+                <p>서울특별시 서대문구</p>
+                <h6>카페 드 에덴</h6>
+                <p>에덴은 여러분의 반려견들을 언제나 환영합니다.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="banner">
+          <img src="/zoobox/resources/img/banner.png" alt="" />
+        </div>
+        <div class="tips">
+          <div></div>
+        </div>
         <div class="review"></div>
       </div>
     </div>
