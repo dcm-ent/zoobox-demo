@@ -1,32 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/zoobox/resources/dist/css/comm.css" />
+    <link rel="stylesheet" href="<c:url value='/resources/dist/css/comm.css' />"   />
     <title>ZOOBOX</title>
   </head>
   <body>
     <header>
-      <div class="header_box">
+		 <div class="header_box">
         <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
         <ul class="menu">
-          <li>홈</li>
-          <li>플레이스</li>
-          <li>커뮤니티</li>
-          <li>에듀</li>
-          <li>스토어</li>
+          <c:forEach var="menu" items="${portletList}" varStatus="status">
+          	<li><a href="<c:url value='${menu.url }' />  ">${menu.name}</a></li>
+          </c:forEach>
         </ul>
         <input type="search" placeholder="Search" />
-        <ul class="alarm">
-          <li><img src="/zoobox/resources/img/icon1.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon2.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon3.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon4.png" alt="" /></li>
-        </ul>
       </div>
     </header>
     <div class="main_bg">
