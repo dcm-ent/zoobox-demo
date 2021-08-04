@@ -107,10 +107,6 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                 <div class="row">
                   <div class="col-lg-6">
                     <form role="form">
-                      <div class="form-group">
-                        <label>프로필 사진등록</label>
-                        <input type="file" />
-                      </div>
                       <label>이메일</label>
                       <div class="form-group" id="flex">
                         <input
@@ -230,16 +226,46 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </button>
                       </div>
 
-                      <label>주소 검색</label>
-
-                      <input type="text" class="form-control" />
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                          우편번호 찾기
-                        </button>
-                      </span>
-                      <label>상세주소 입력</label>
-                      <input type="text" class="form-control" />
+                      <input
+                        type="text"
+                        id="sample4_postcode"
+                        placeholder="우편번호"
+                        class="form-control"
+                      />
+                      <input
+                        type="button"
+                        onclick="sample4_execDaumPostcode()"
+                        value="우편번호 찾기"
+                        class="btn btn-default"
+                      /><br />
+                      <input
+                        type="text"
+                        id="sample4_roadAddress"
+                        placeholder="도로명주소"
+                        class="form-control"
+                      />
+                      <input
+                        type="text"
+                        id="sample4_jibunAddress"
+                        placeholder="지번주소"
+                        class="form-control"
+                      />
+                      <span
+                        id="guide"
+                        style="color: #999; display: none"
+                      ></span>
+                      <input
+                        type="text"
+                        id="sample4_detailAddress"
+                        placeholder="상세주소"
+                        class="form-control"
+                      />
+                      <input
+                        type="text"
+                        id="sample4_extraAddress"
+                        placeholder="참고항목"
+                        class="form-control"
+                      />
                       <label>생년월일</label>
                       <div class="form-group" id="flex">
                         <input
@@ -365,7 +391,70 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
     <!-- Custom Theme JavaScript -->
     <script src="/zoobox/resources/dist/js/sb-admin-2.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+      //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+      function sample4_execDaumPostcode() {
+        new daum.Postcode({
+          oncomplete: function (data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ""; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              extraRoadAddr +=
+                extraRoadAddr !== ""
+                  ? ", " + data.buildingName
+                  : data.buildingName;
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraRoadAddr !== "") {
+              extraRoadAddr = " (" + extraRoadAddr + ")";
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById("sample4_postcode").value = data.zonecode;
+            document.getElementById("sample4_roadAddress").value = roadAddr;
+            document.getElementById("sample4_jibunAddress").value =
+              data.jibunAddress;
+
+            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if (roadAddr !== "") {
+              document.getElementById("sample4_extraAddress").value =
+                extraRoadAddr;
+            } else {
+              document.getElementById("sample4_extraAddress").value = "";
+            }
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if (data.autoRoadAddress) {
+              var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+              guideTextBox.innerHTML =
+                "(예상 도로명 주소 : " + expRoadAddr + ")";
+              guideTextBox.style.display = "block";
+            } else if (data.autoJibunAddress) {
+              var expJibunAddr = data.autoJibunAddress;
+              guideTextBox.innerHTML =
+                "(예상 지번 주소 : " + expJibunAddr + ")";
+              guideTextBox.style.display = "block";
+            } else {
+              guideTextBox.innerHTML = "";
+              guideTextBox.style.display = "none";
+            }
+          },
+        }).open();
+      }
+    </script>
     <script>
       $(document).ready(function () {
         //이메일 체크
@@ -379,11 +468,13 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             data: { email: email },
             dataType: "JSON",
             success: function (obj) {
-              if (obj.mailCheck != 1) {
+              
+            if (obj.mailCheck != 1) {
                 emailChk = true;
                 $("#emailConfirmDiv").show();
                 alert("사용할 수 있는 이메일입니다.");
               } else {
+            	emailChk=false;
                 alert("이미 사용중인 이메일입니다.");
               }
             },
@@ -397,19 +488,39 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         var nicknameChk = false;
         $("#nicknameBtn").click(function () {
           var nickname = $("#nicknameInput").val();
+          var spec = nickname.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
           $.ajax({
             type: "post",
             url: "/zoobox/user/nicknamecheck",
             data: { nickname: nickname },
             dataType: "JSON",
             success: function (obj) {
-              console.log(obj);
+              if(nickname.length<3){
+            	  alert("닉네임은 3자이상 입력하셔야 합니다.");
+            	  nicknameChk=false;
+            	  return false;
+            	  
+              }
+              if(spec >= 0){
+            	  alert("닉네임은 특수문자를 포함할 수 없습니다.");
+            	  nicknameChk=false;
+            	  return false;
+              }
+              if(nickname.search(/\s/) != -1){
+            	  alert("닉네임엔 공백이 들어갈 수 없습니다.");
+            	  nicknameChk=false;
+            	  return false;
+              }
+              
               if (obj.nicknameCheck != 1) {
                 nicknameChk = true;
                 alert("사용할 수 있는 닉네임입니다.");
               } else {
-                alert("이미 사용중인 닉네임입니다.");
+            	  nicknameChk=false;
+            	  alert("이미 사용중인 닉네임입니다.");
+                return false;
               }
+              
             },
             error: function (e) {
               console.log(e);
@@ -443,6 +554,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             time--;
             if (time < 0) {
               clearInterval(timeinterval);
+              var emailConfirmChk = false;
               str = "입력시간이 종료되었습니다.재전송버튼을 눌러주세요";
             }
             $("#viewTimer").html(str);
@@ -454,6 +566,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             emailConfirmNum = Math.floor(Math.random() * 900000 + 100000);
             console.log(emailConfirmNum);
             time = 300;
+            var emailConfirmChk = false;
             alert("인증번호가 재전송됬습니다.");
           });
           //인증번호 입력시 이벤트
@@ -465,6 +578,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               clearInterval(timeinterval);
               $("#emailConfirmDiv").hide();
             } else {
+            	var emailConfirmChk = false;
               alert("인증번호가 틀렸습니다 다시 확인해주세요.");
             }
           });
@@ -484,6 +598,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 세글자 이상 입력하셔야 합니다." +
               "</span>";
+               nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else if (spec >= 0) {
             str3 = "";
@@ -492,6 +607,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 특수문자를 포함할 수 없습니다." +
               "</span>";
+               nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else if (nickname.search(/\s/) != -1) {
             str3 = "";
@@ -500,6 +616,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 공백없이 입력해주세요." +
               "</span>";
+               nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else {
             str3 = "";
@@ -524,6 +641,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 두글자 이상 입력하셔야 합니다." +
               "</span>";
+               nameChk = false;
             $("#nameCheck").html(str4);
           } else if (speci >= 0) {
             str4 = "";
@@ -532,6 +650,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 특수문자를 포함할 수 없습니다." +
               "</span>";
+               nameChk = false;
             $("#nameCheck").html(str4);
           } else if (name.search(/\s/) != -1) {
             str4 = "";
@@ -540,6 +659,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 공백없이 입력해주세요." +
               "</span>";
+               nameChk = false;
             $("#nameCheck").html(str4);
           } else {
             str4 = "";
@@ -570,6 +690,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "비밀번호는 10자 이상입력하셔야 합니다." +
               "</span>";
+              passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else if (password1.search(/\s/) != -1) {
             str1 = "";
@@ -578,6 +699,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "비밀번호는 공백없이 입력해주세요." +
               "</span>";
+              passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else if (num < 0 || eng < 0 || spe < 0) {
             str1 = "";
@@ -586,6 +708,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "영문,숫자, 특수문자를 혼합하여 입력해주세요." +
               "</span>";
+              passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else {
             str1 = "";
@@ -608,6 +731,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "패스워드가 일치하지 않습니다." +
               "</span>";
+              passwordCheck2 = false;
             $("#passwordNotice2").html(str2);
           } else {
             $("#passwordInput2").css("border-color", "#00ff2f");
