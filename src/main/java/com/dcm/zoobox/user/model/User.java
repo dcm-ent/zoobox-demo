@@ -14,6 +14,8 @@ public class User {
 	private String nickname;
 	private String birthdate;
 	private String phone;
+	private String address;
+	private String roadAddress;
 	private Date regDate;
 	private Date updateDate;
 	private String gender;
@@ -22,6 +24,12 @@ public class User {
 	private UserInfo userInfo;
 	private UserRole userRole;
 	private UserSnsInfo userSnsInfo;
-
+	
+	private String zipcode;
+	private String detailAddress;
+	private String yearValue;
+	private String monthValue;
+	private String dayValue;
+	private String emailInfo;
 
 }

@@ -22,9 +22,15 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void createUser(User user) {
+		log.info(user.getPhone());
+		user.setEmail(user.getEmail()+"@"+user.getEmailInfo());
+		user.setBirthdate(user.getYearValue()+user.getMonthValue()+user.getDayValue());
+		user.setAddress(user.getAddress()+" "+user.getDetailAddress());
+		user.setRoadAddress(user.getRoadAddress()+" "+user.getDetailAddress());
 		Long userId = mapper.createUser(user);
+		log.info("userId"+userId);
 		mapper.createUserDetails(userId);
-		log.info("등록완료 ");
+		log.info("등록완료");
 		
 	}
 

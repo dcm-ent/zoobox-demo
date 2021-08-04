@@ -38,8 +38,9 @@ public class UserController {
 		log.info("login form");
 	}
 	@PostMapping("/create")
-	public void createUser(User user) {
+	public String createUser(User user) {
 		service.createUser(user);
+		return "/home";
 	}
 	
 	

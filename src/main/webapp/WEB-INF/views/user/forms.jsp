@@ -106,7 +106,11 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               <div class="panel-body">
                 <div class="row">
                   <div class="col-lg-6">
-                    <form role="form">
+                    <form
+                      role="form"
+                      action="/zoobox/user/create"
+                      method="POST"
+                    >
                       <label>이메일</label>
                       <div class="form-group" id="flex">
                         <input
@@ -117,7 +121,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           maxlength="64"
                         />
                         <span class="input-group-addon">@</span>
-                        <select class="form-control" id="emailInput2">
+                        <select class="form-control" id="emailInput2" name="emailInfo">
                           <option>naver.com</option>
                           <option>gmail.com</option>
                           <option>gmail.com</option>
@@ -166,6 +170,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <label>패스워드</label>
                         <input
                           type="password"
+                          name="password"
                           id="passwordInput1"
                           class="form-control"
                           placeholder="패스워드를 입력해주세요(10자이상,25자이하,특수문자포함)"
@@ -188,6 +193,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       <div class="form-group">
                         <input
                           id="nameInput"
+                          name="username"
                           class="form-control"
                           placeholder="이름을 입력해주세요"
                           maxlength="10"
@@ -199,6 +205,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <input
                           class="form-control"
                           id="nicknameInput"
+                          name="nickname"
                           placeholder="닉네임을 입력해주세요"
                           maxlength="25"
                         />
@@ -220,6 +227,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           placeholder="휴대폰 번호를 입력해주세요"
                           maxlength="20"
                           type="number"
+                          name="phone"
                         />
                         <button class="btn btn-default" type="button">
                           휴대폰 인증
@@ -231,6 +239,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         id="sample4_postcode"
                         placeholder="우편번호"
                         class="form-control"
+                        name="zipcode"
                       />
                       <input
                         type="button"
@@ -243,12 +252,14 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         id="sample4_roadAddress"
                         placeholder="도로명주소"
                         class="form-control"
+                        name="roadAddress"
                       />
                       <input
                         type="text"
                         id="sample4_jibunAddress"
                         placeholder="지번주소"
                         class="form-control"
+                        name="address"
                       />
                       <span
                         id="guide"
@@ -259,12 +270,13 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         id="sample4_detailAddress"
                         placeholder="상세주소"
                         class="form-control"
+                        name="detailAddress"
                       />
                       <input
-                        type="text"
+                        type="hidden"
                         id="sample4_extraAddress"
-                        placeholder="참고항목"
                         class="form-control"
+                        placeholder="참고항목"
                       />
                       <label>생년월일</label>
                       <div class="form-group" id="flex">
@@ -272,20 +284,20 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           class="form-control"
                           id="yearValue"
                           type="text"
-                          name="inyear"
+                          name="yearValue"
                           size="5"
                           class="inBorder"
                         />년
                         <select class="form-control" name="monthValue">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
+                          <option value="01">01</option>
+                          <option value="02">02</option>
+                          <option value="03">03</option>
+                          <option value="04">04</option>
+                          <option value="05">05</option>
+                          <option value="06">06</option>
+                          <option value="07">07</option>
+                          <option value="08">08</option>
+                          <option value="09">09</option>
                           <option value="10">10</option>
                           <option value="11">11</option>
                           <option value="12">12</option>
@@ -293,15 +305,15 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
                         월
                         <select class="form-control" name="dayValue">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
+                          <option value="01">01</option>
+                          <option value="02">02</option>
+                          <option value="03">03</option>
+                          <option value="04">04</option>
+                          <option value="05">05</option>
+                          <option value="06">06</option>
+                          <option value="07">07</option>
+                          <option value="08">08</option>
+                          <option value="09">09</option>
                           <option value="10">10</option>
                           <option value="11">11</option>
                           <option value="12">12</option>
@@ -333,18 +345,18 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <label class="radio-inline">
                           <input
                             type="radio"
-                            name="optionsRadiosInline"
+                            name="gender"
                             id="optionsRadiosInline1"
-                            value="option1"
+                            value="male"
                             checked
                           />남성
                         </label>
                         <label class="radio-inline">
                           <input
                             type="radio"
-                            name="optionsRadiosInline"
+                            name="gender"
                             id="optionsRadiosInline2"
-                            value="option2"
+                            value="female"
                           />여성
                         </label>
                       </div>
@@ -468,13 +480,12 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             data: { email: email },
             dataType: "JSON",
             success: function (obj) {
-              
-            if (obj.mailCheck != 1) {
+              if (obj.mailCheck != 1) {
                 emailChk = true;
                 $("#emailConfirmDiv").show();
                 alert("사용할 수 있는 이메일입니다.");
               } else {
-            	emailChk=false;
+                emailChk = false;
                 alert("이미 사용중인 이메일입니다.");
               }
             },
@@ -495,32 +506,30 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             data: { nickname: nickname },
             dataType: "JSON",
             success: function (obj) {
-              if(nickname.length<3){
-            	  alert("닉네임은 3자이상 입력하셔야 합니다.");
-            	  nicknameChk=false;
-            	  return false;
-            	  
+              if (nickname.length < 3) {
+                alert("닉네임은 3자이상 입력하셔야 합니다.");
+                nicknameChk = false;
+                return false;
               }
-              if(spec >= 0){
-            	  alert("닉네임은 특수문자를 포함할 수 없습니다.");
-            	  nicknameChk=false;
-            	  return false;
+              if (spec >= 0) {
+                alert("닉네임은 특수문자를 포함할 수 없습니다.");
+                nicknameChk = false;
+                return false;
               }
-              if(nickname.search(/\s/) != -1){
-            	  alert("닉네임엔 공백이 들어갈 수 없습니다.");
-            	  nicknameChk=false;
-            	  return false;
+              if (nickname.search(/\s/) != -1) {
+                alert("닉네임엔 공백이 들어갈 수 없습니다.");
+                nicknameChk = false;
+                return false;
               }
-              
+
               if (obj.nicknameCheck != 1) {
                 nicknameChk = true;
                 alert("사용할 수 있는 닉네임입니다.");
               } else {
-            	  nicknameChk=false;
-            	  alert("이미 사용중인 닉네임입니다.");
+                nicknameChk = false;
+                alert("이미 사용중인 닉네임입니다.");
                 return false;
               }
-              
             },
             error: function (e) {
               console.log(e);
@@ -577,12 +586,13 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               alert("인증이 완료되었습니다.");
               clearInterval(timeinterval);
               $("#emailConfirmDiv").hide();
+              console.log("emailConfirmChk : " + emailConfirmChk);
             } else {
-            	var emailConfirmChk = false;
               alert("인증번호가 틀렸습니다 다시 확인해주세요.");
             }
           });
         });
+        
         //닉네임 제약
         var nicknameChk2 = false;
         var nickname = "";
@@ -598,7 +608,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 세글자 이상 입력하셔야 합니다." +
               "</span>";
-               nicknameChk2 = false;
+            nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else if (spec >= 0) {
             str3 = "";
@@ -607,7 +617,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 특수문자를 포함할 수 없습니다." +
               "</span>";
-               nicknameChk2 = false;
+            nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else if (nickname.search(/\s/) != -1) {
             str3 = "";
@@ -616,7 +626,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "닉네임은 공백없이 입력해주세요." +
               "</span>";
-               nicknameChk2 = false;
+            nicknameChk2 = false;
             $("#nicknameCheck").html(str3);
           } else {
             str3 = "";
@@ -641,7 +651,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 두글자 이상 입력하셔야 합니다." +
               "</span>";
-               nameChk = false;
+            nameChk = false;
             $("#nameCheck").html(str4);
           } else if (speci >= 0) {
             str4 = "";
@@ -650,7 +660,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 특수문자를 포함할 수 없습니다." +
               "</span>";
-               nameChk = false;
+            nameChk = false;
             $("#nameCheck").html(str4);
           } else if (name.search(/\s/) != -1) {
             str4 = "";
@@ -659,7 +669,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "이름은 공백없이 입력해주세요." +
               "</span>";
-               nameChk = false;
+            nameChk = false;
             $("#nameCheck").html(str4);
           } else {
             str4 = "";
@@ -690,7 +700,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "비밀번호는 10자 이상입력하셔야 합니다." +
               "</span>";
-              passwordCheck1 = false;
+            passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else if (password1.search(/\s/) != -1) {
             str1 = "";
@@ -699,7 +709,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "비밀번호는 공백없이 입력해주세요." +
               "</span>";
-              passwordCheck1 = false;
+            passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else if (num < 0 || eng < 0 || spe < 0) {
             str1 = "";
@@ -708,7 +718,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "영문,숫자, 특수문자를 혼합하여 입력해주세요." +
               "</span>";
-              passwordCheck1 = false;
+            passwordCheck1 = false;
             $("#passwordNotice").html(str1);
           } else {
             str1 = "";
@@ -731,7 +741,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               "<span style='color:red'>" +
               "패스워드가 일치하지 않습니다." +
               "</span>";
-              passwordCheck2 = false;
+            passwordCheck2 = false;
             $("#passwordNotice2").html(str2);
           } else {
             $("#passwordInput2").css("border-color", "#00ff2f");
