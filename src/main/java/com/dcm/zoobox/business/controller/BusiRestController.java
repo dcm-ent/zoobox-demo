@@ -11,39 +11,34 @@ import java.net.URL;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/rest")
 public class BusiRestController {
 
-    @GetMapping("/validate")
+    @PostMapping("/rest/validate")
     @ResponseBody
-    public String searchBusinessNumber(@PathVariable String number) throws Exception {
-        System.out.println("Ω««‡"+number);
-        //ªÁæ˜¿⁄ π¯»£
+    public String searchBusinessNumber( @RequestParam String number) throws Exception {
+        System.out.println("number Í∞í: "+number);
        // String number="8108600658";
         String EncodingKey="n9dAG9GLBclIr6pTa1ONRq4D7DJMgtONggPCq7Hn7p53X0W2cfaH9GaESxKRyqxmB8md07hNTg30b9sdkzqZYg%3D%3D";
         String DecodingKey="n9dAG9GLBclIr6pTa1ONRq4D7DJMgtONggPCq7Hn7p53X0W2cfaH9GaESxKRyqxmB8md07hNTg30b9sdkzqZYg==";
-        String url="api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="+EncodingKey+"&b_no="+number+"&returnType=JSON";
+        String url="https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="+EncodingKey+"&b_no="+number;
 
-
-        //   1»∏ »£√‚ Ω√ √÷¥Î 100∞≥ø° «ÿ¥Á«œ¥¬ ªÁæ˜¿⁄µÓ∑œ¡§∫∏¿« ¡¯¿ß»Æ¿Œ ∂«¥¬ ªÁæ˜¿⁄µÓ∑œ ªÛ≈¬¡∂»∏∞° ∞°¥…«’¥œ¥Ÿ.
-        //  100∞≥ √ ∞˙ Ω√ø°¥¬ Too Large Request Error ∞° πﬂª˝«’¥œ¥Ÿ. (* «œ¥‹¿« Too Large Request Error ∫Œ∫–¿ª ¬¸∞Ì«ÿ¡÷ººø‰)
         //returnType=JSON (Default)
-        // http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=[º≠∫ÒΩ∫≈∞]&returnType=XML
+        // http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=[Ïù∏Ï¶ùÌÇ§]&returnType=XML
 
         ModelAndView mv=new ModelAndView();
 
-        HashMap<String,Object> businessCheckMap=getDataFromJson(url,"UTF-8","get","");
+        HashMap<String,Object> businessCheckMap=getDataFromJson(url,"UTF-8","post","");
         System.out.println(businessCheckMap);
 
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("businessCheckMap",businessCheckMap);
-        System.out.println("∞Àªˆ ∞·∞˙: "+jsonObject.toString());
+        System.out.println("Îç∞Ïù¥ÌÑ∞ : "+jsonObject.toString());
 
-        //»≠∏È ¡÷º“
 
         return jsonObject.toString();
     }
     public HashMap<String,Object> getDataFromJson(String url,String encoding,String type,String jsonStr) throws Exception {
+        System.out.println("getDataFromJson---->"+url+encoding);
         boolean isPost=false;
         if("post".equals(type)){
             isPost=true;
@@ -55,7 +50,9 @@ public class BusiRestController {
     }
 
     private HashMap<String, Object> getStringFromURL(String url, String encoding, boolean isPost, String jsonStr, String contentType) throws Exception {
+        System.out.println("getStringFromURL-->"+isPost+jsonStr);
         URL ApiUrl=new URL(url);
+
         HttpURLConnection con=null;
         BufferedReader br=null;
         BufferedWriter bw=null;
@@ -87,7 +84,7 @@ public class BusiRestController {
             br=new BufferedReader(new InputStreamReader(con.getInputStream(),encoding));
             String line=null;
             StringBuffer result=new StringBuffer();
-
+            System.out.println("Îç∞Ïù¥ÌÑ∞ : "+br.readLine().toString());
             while((line=br.readLine()) != null) result.append(line);
             ObjectMapper mapper=new ObjectMapper();
             resultMap=mapper.readValue(result.toString(),HashMap.class);
@@ -101,6 +98,7 @@ public class BusiRestController {
             if(br !=null ) br.close();
             if(bw !=null) bw.close();
         }
+        System.out.println("resultMap:"+resultMap);
         return resultMap;
 
 

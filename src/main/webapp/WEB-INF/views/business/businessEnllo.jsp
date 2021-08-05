@@ -15,9 +15,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="datepair.js"></script>
-    <script type="text/javascript" src="jquery.datepair.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 
     <title>Document</title>
 </head>
@@ -76,8 +77,8 @@
 
         <div class="business-container-box-time">
             <div class="businessName_description" >운영시간 : </div>
-            <input type="text" id="time start" placeholder="시작시간"/>
-            <input type="text" id="time end" placeholder="종료시간"/>
+            <input type="text" class="time start" placeholder="시작시간"/>
+            <input type="text" class="time end" placeholder="종료시간"/>
 
 
         </div>
@@ -107,10 +108,13 @@
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    $('.business-container-box-time .time').timepicker({
-        'showDuration': true,
-        'timeFormat': 'h:mm a'
-    });
+    $(document).ready(function(){
+        $('.business-container-box-time .time').timepicker({
+            'showDuration': true,
+            'timeFormat': 'HH:mm '
+        });
+    })
+
 
     function businessAddressCheck() {
         new daum.Postcode({
@@ -158,25 +162,21 @@
                 document.getElementById("detailAddress").focus();
             }
         }).open();
-        // 국세청 사업자 번호 조회
-        function search_business_number(){
-            const businessNumber=document.getElementById("businessNumber").value;
-
-        }
-
 
     }
-
+//국세청
     function search_business_number(){
         const number= $('#businessNumber').val();
+        alert(number);
         $.ajax({
-            type:"POST",
-            url:'${path}/rest/validate',
-            contentType:"application/json",
+            type:"post",
+            url:'${path}/html',
+         //   contentType :"application/json",
             data:{number:number},
+           // dataType:"json",
             success:function(data,status,xhr){
                 const dataHeader=data.result.response.header.resultCode;
-                if(dataHeader == "00"){
+                if(status == 200){
                     alert("여기있다.")
                 }
         }

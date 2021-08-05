@@ -4,7 +4,7 @@
   justify-content: center;
 }
 %titleText {
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 15px;
   color: #333;
   font-weight: 400;
@@ -262,6 +262,7 @@ header {
           background-color: #fff;
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.102);
           border-radius: 10px;
+          background-image: url(../../img/area_daejeon.png);
         }
         & > div:nth-child(2) {
           width: 57%;
@@ -278,6 +279,7 @@ header {
             margin-top: 20px;
             padding: 0 3%;
             box-sizing: border-box;
+
             & h4 {
               color: #565656;
               font-size: 26px;
@@ -296,22 +298,62 @@ header {
               justify-content: space-between;
               align-items: center;
               border-bottom: 1px dotted #000;
+              padding: 0 2%;
+              box-sizing: border-box;
+              & h6 {
+                font-size: 14px;
+                color: #494949;
+              }
+              & p {
+                color: #aaa;
+                font-size: 12px;
+              }
             }
           }
         }
       }
     }
-    & .slide_bg {
-      height: 900px;
-      background-color: brown;
+    & .new_place {
+      margin-top: 40px;
+      & h3 {
+        @extend %titleText;
+        margin-top: 50px;
+      }
+      & ul {
+        width: 100%;
+        margin-top: 15px;
+        & li {
+          width: 19%;
+          margin-right: 1%;
+          height: 385px;
+          overflow: hidden;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.102);
+          border-radius: 10px;
+          background-color: #fff;
+          & img {
+            width: 100%;
+          }
+          & h6 {
+            margin-left: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            color: #565656;
+          }
+          & p {
+            width: 75%;
+            font-size: 10px;
+            color: #565656;
+            margin-top: 7px;
+            margin-left: 10px;
+          }
+        }
+      }
     }
     & .banner {
-      height: 200px;
-      background-color: cadetblue;
+      margin-top: 50px;
     }
     & .tips {
       height: 650px;
-      background-color: chocolate;
     }
     & .review {
       height: 440px;

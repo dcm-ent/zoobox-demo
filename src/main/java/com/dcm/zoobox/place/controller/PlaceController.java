@@ -14,4 +14,6 @@ public class PlaceController {
 	public void place() {
 		log.info("============place===========");
 	}
+
+
 }

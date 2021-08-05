@@ -11,10 +11,10 @@ public class BusinessController {
 
     @RequestMapping("/home")
     public String go(){
-        log.info("go°¡ÀÚ~!");
+        log.info("goê°€ì~!");
         return "business/businessEnllo";
     }
-    //µî·Ï api
+    //ï¿½ï¿½ï¿½ api
     @RequestMapping("/busiEnllo")
     public ModelAndView busisave(){
         ModelAndView mv=new ModelAndView();
