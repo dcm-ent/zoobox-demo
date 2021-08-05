@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -15,7 +16,7 @@
         <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
         <ul class="menu">
           <li>홈</li>
-          <li>플레이스</li>
+          <li><a src="<c:"플레이스</li>
           <li>커뮤니티</li>
           <li>에듀</li>
           <li>스토어</li>
@@ -37,86 +38,6 @@
       </div>
     </div>
     <div class="main_contents">
-      <div class="left_content">
-        <figure><img src="/zoobox/resources/img/side_menu.png" alt="" /></figure>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_bt.png" alt="" />
-          <p>전체</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_dog.png" alt="" />
-          <p>강아지</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_cat.png" alt="" />
-          <p>고양이</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_etc.png" alt="" />
-          <p>기타동물</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_event.png" alt="" />
-          <p>이벤트</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_notice.png" alt="" />
-          <p>공지사항</p>
-        </button>
-        <button>
-          <img src="/zoobox/resources/img/side_menu_setting.png" alt="" />
-          <p>설정</p>
-        </button>
-      </div>
-      <div class="right_content">
-        <div class="place">
-          <div class="hot">
-            <h3>추천 핫 플레이스</h3>
-            <ul>
-              <li>
-                <figure>
-                  <img src="/zoobox/resources/img/place1.png" alt="" />
-                </figure>
-                <p>경기도 이천시</p>
-                <h6>시몬스 테라스점</h6>
-                <p>
-                  시몬스가 제안하는 라이프스타일을 만날 수 있는 플래그십
-                  스토어입니다.
-                </p>
-              </li>
-              <li>
-                <figure>
-                  <img src="/zoobox/resources/img/place2.png" alt="" />
-                </figure>
-                <p>경기도 포천시</p>
-                <h6>달빛 애견글램핑</h6>
-                <p>
-                  포천달빛 글램핑은 계곡과 개울을 따라 캠핑 사이트를 구성하여
-                  일상의 스트레스를 날리세요
-                </p>
-              </li>
-              <li>
-                <figure>
-                  <img src="/zoobox/resources/img/place3.png" alt="" />
-                </figure>
-                <p>경기도 여주시</p>
-                <h6>플러피펍</h6>
-                <p>애견동반 카페 겸 운동장입니다. 월 - 화는 12:00 - 19:00,</p>
-              </li>
-            </ul>
-          </div>
-          <div class="inquiry">
-            <h3>금주 최다 조회</h3>
-            <div class="most_view">
-              <div>
-                <h5>래플레즈 동물병원</h5>
-                <p>경기도 구리시</p>
-              </div>
-              <img src="/zoobox/resources/img/star.png" alt="" />
-              <h6>5.0</h6>
-            </div>
-          </div>
-        </div>
         <div class="facility">
           <h3>쥬박스에서 현재 찾아볼 수 있는 업체</h3>
           <div>

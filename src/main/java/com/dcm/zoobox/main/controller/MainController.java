@@ -30,4 +30,8 @@ public class MainController {
 		
 		return new ModelAndView("home", model);
 	}
+	@GetMapping("/place")
+	public String goPlace(){
+		return "place/place";
+	}
 }
