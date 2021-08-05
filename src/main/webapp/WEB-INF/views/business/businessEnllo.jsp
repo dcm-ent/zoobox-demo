@@ -170,7 +170,7 @@
         alert(number);
         $.ajax({
             type:"post",
-            url:'${path}/html',
+            url:'${path}/rest/validate',
          //   contentType :"application/json",
             data:{number:number},
            // dataType:"json",

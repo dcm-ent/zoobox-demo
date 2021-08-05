@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 public class BusinessController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/businesshome")
     public String go(){
         log.info("go가자~!");
         return "business/businessEnllo";
