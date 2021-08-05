@@ -48,7 +48,7 @@
 		values (#{email},#{password},#{birthdate},#{username},#{nickname},#{phone},#{gender},#{address},#{roadAddress},#{zipcode});
 		
 		<selectKey keyProperty="userId" order="AFTER" resultType="Long">
-					SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1
+					SELECT MAX(user_id) from user
 		</selectKey>
 	</insert>
 	<insert id="createUserDetails" parameterType="Long">

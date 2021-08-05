@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dcm.zoobox.user.model.User;
 import com.dcm.zoobox.user.service.UserService;
@@ -38,9 +39,10 @@ public class UserController {
 		log.info("login form");
 	}
 	@PostMapping("/create")
-	public String createUser(User user) {
+	public String createUser(User user, RedirectAttributes rttr) {
 		service.createUser(user);
-		return "/home";
+		
+		return "redirect:/home";
 	}
 	
 	

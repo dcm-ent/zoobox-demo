@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService{
 		user.setBirthdate(user.getYearValue()+user.getMonthValue()+user.getDayValue());
 		user.setAddress(user.getAddress()+" "+user.getDetailAddress());
 		user.setRoadAddress(user.getRoadAddress()+" "+user.getDetailAddress());
-		Long userId = mapper.createUser(user);
+		mapper.createUser(user);
+		Long userId = user.getUserId();
 		log.info("userId"+userId);
 		mapper.createUserDetails(userId);
 		log.info("등록완료");

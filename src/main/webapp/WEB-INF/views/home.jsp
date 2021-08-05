@@ -12,7 +12,7 @@
   <body>
     <header>
       <div class="header_box">
-        <figure><img src="../../resources/img/logo.png" alt="" /></figure>
+        <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
         <ul class="menu">
           <li>홈</li>
           <li>플레이스</li>
