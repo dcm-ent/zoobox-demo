@@ -100,7 +100,6 @@
         </div>
         <div class="review"></div>
       </div>
-    </div>
     <footer></footer>
   </body>
 </html>
