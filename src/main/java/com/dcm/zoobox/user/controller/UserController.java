@@ -45,6 +45,11 @@ public class UserController {
 		return "redirect:/home";
 	}
 	
+	@GetMapping("/forms_test")
+	public void forms_test() {
+		log.info("join form");
+	}
+	
 	
 	
 	

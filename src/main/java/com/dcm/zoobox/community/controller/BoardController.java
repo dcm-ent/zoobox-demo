@@ -22,6 +22,6 @@ public class BoardController {
 //		List<Board> portletList = boardService.getPortletList();
 //		model.put("portletList", portletList);
 		
-		return new ModelAndView("board/main", model);
+		return new ModelAndView("community/board/main", model);
 	}
 }

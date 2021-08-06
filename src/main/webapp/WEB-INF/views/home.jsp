@@ -7,29 +7,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<c:url value='/resources/dist/css/comm.css' />" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/comm.css' />" />
     <title>ZOOBOX</title>
   </head>
   <body>
-    <header>
-      <div class="header_box">
-        <figure><img src="/zoobox/resources/img/logo.png" alt="" /></figure>
-        <ul class="menu">
-          <li>홈</li>
-          <li><a src="<c:"플레이스</li>
-          <li>커뮤니티</li>
-          <li>에듀</li>
-          <li>스토어</li>
-        </ul>
-        <input type="search" placeholder="Search" />
-        <ul class="alarm">
-          <li><img src="/zoobox/resources/img/icon1.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon2.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon3.png" alt="" /></li>
-          <li><img src="/zoobox/resources/img/icon4.png" alt="" /></li>
-        </ul>
-      </div>
-    </header>
+     <header>
+     
+     	<jsp:include page="/header"></jsp:include>
+    </header> 
     <div class="main_bg">
       <div></div>
       <div class="main_bg_t">

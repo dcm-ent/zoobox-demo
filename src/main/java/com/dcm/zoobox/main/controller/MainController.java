@@ -16,20 +16,45 @@ import com.dcm.zoobox.main.model.Main;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/")
 @Log4j
 public class MainController {
 	
 	@Autowired
 	private BoardService boardService;
 	
-	@GetMapping("/home")
+	@GetMapping("/")
 	public ModelAndView init(@RequestParam Map<String, Object> model) {
+//		List<Main> portletList = boardService.getPortletList();
+//		model.put("portletList", portletList);
+		
+		return new ModelAndView("home_test", model);
+	}
+	
+	@GetMapping("/header")
+	public ModelAndView header(@RequestParam Map<String, Object> model) {
 		List<Main> portletList = boardService.getPortletList();
 		model.put("portletList", portletList);
 		
-		return new ModelAndView("home", model);
+		return new ModelAndView("common/header", model);
 	}
+	
+	
+	@GetMapping("/leftMenu")
+	public ModelAndView leftMenu(@RequestParam Map<String, Object> model) {
+		List<Main> portletList = boardService.getPortletList();
+		model.put("portletList", portletList);
+		
+		return new ModelAndView("common/leftMenu", model);
+	}
+	
+	
+	@GetMapping("/footer")
+	public ModelAndView footer(@RequestParam Map<String, Object> model) {
+		
+		return new ModelAndView("common/footer", model);
+	}
+	
+	
 	@GetMapping("/place")
 	public String goPlace(){
 		return "place/place";
