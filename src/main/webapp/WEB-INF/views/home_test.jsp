@@ -11,7 +11,7 @@
 	
      <header>
      
-     	<jsp:include page="/header"></jsp:include>
+     	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
     </header> 
 	
     <div class="main_bg">
@@ -181,6 +181,6 @@
       </div>
     </div>
     
-    <jsp:include page="/footer"></jsp:include>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
   </body>
 </html>

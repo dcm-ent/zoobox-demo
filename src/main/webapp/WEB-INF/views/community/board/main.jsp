@@ -10,15 +10,15 @@
 <body>
 
 	<header>
-		<jsp:include page="/header"></jsp:include>
+		<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	</header>
 
 	<div class="main_contents">
-		<jsp:include page="/leftMenu"></jsp:include>
+		<jsp:include page="/WEB-INF/views/common/leftMenu.jsp"></jsp:include>
 		<div class="right_content">board main</div>
 	</div>
 
-	<jsp:include page="/footer"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

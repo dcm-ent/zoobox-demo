@@ -2,11 +2,12 @@ package com.dcm.zoobox.place.model.kakao;
 
 
 import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import java.util.List;
 
 @Data
