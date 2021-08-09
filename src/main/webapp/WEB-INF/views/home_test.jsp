@@ -181,6 +181,6 @@
       </div>
     </div>
     
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+    <jsp:include page="/footer"></jsp:include>
   </body>
 </html>

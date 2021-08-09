@@ -13,7 +13,7 @@
   <body>
      <header>
      
-     	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+     	<jsp:include page="/header"></jsp:include>
     </header> 
     <div class="main_bg">
       <div></div>
