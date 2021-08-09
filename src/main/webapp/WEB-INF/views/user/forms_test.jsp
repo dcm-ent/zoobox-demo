@@ -9,11 +9,11 @@
   <body>
 	
 	<header>
-     	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+     	<jsp:include page="/header"></jsp:include>
     </header> 
 	
  	<div class="main_contents">
-	 	<jsp:include page="/WEB-INF/views/common/leftMenu.jsp"></jsp:include>
+	 	<jsp:include page="/leftMenu"></jsp:include>
 	 	<div class="right_content">
 	 	
 	 	
@@ -322,7 +322,7 @@
 	 	
 	 	</div>
     
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+    <jsp:include page="/footer"></jsp:include>
   
   </body>
 </html>
