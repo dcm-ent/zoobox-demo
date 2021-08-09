@@ -16,6 +16,6 @@
 		<li><img src="<c:url value='/resources/img/icon1.png' />" alt="" /></li>
 		<li><img src="<c:url value='/resources/img/icon2.png' />" alt="" /></li>
 		<li><img src="<c:url value='/resources/img/icon3.png' />" alt="" /></li>
-		<li><a href="<c:url value='/user/forms_test' />"><img src="<c:url value='/resources/img/icon4.png' />" alt="" /></a></li>
+		<li><a href="<c:url value='/user/forms' />"><img src="<c:url value='/resources/img/icon4.png' />" alt="" /></a></li>
 	</ul>
 </div>
