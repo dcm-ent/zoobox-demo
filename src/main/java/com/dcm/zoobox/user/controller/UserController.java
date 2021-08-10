@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,19 @@ public class UserController {
 	public void login() {
 		log.info("login form");
 	}
+	@GetMapping("/petCategorySelect")
+	public void petCategorySelect() {
+		log.info("pet Select");
+	}
+	@GetMapping("/petEnroll/{cateNum}")
+	public String petEnroll(@PathVariable("cateNum") int cateNum,Model model) {
+		log.info("pet Enroll form");
+		model.addAttribute("petBreed", service.getPetBreed(cateNum));
+		return "/user/petEnroll";
+	}
+	
+	
+	
 	@PostMapping("/create")
 	public String createUser(User user, RedirectAttributes rttr) {
 		service.createUser(user);
@@ -62,7 +76,4 @@ public class UserController {
 				return service.checkDuplicatedNickname(nickname);
 			}
 		
-		
-		//test
-
 }
