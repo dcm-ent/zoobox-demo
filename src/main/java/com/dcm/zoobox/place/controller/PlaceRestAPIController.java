@@ -12,9 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,6 +149,16 @@ import java.util.List;
             }
         }
         placeService.save(list);
+    }
+
+
+    //카카오 키워드 검색 api
+    @RequestMapping(value="/place/serachPlace",method=RequestMethod.GET)
+    @ResponseBody
+    public String serach(@RequestParam String query) throws MalformedURLException, UnsupportedEncodingException {
+        logger.info("query"+query);
+        placeService.search(query);
+        return "place/place";
     }
 
 }

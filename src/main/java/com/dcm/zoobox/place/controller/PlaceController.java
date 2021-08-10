@@ -17,7 +17,7 @@ public class PlaceController {
 	public String place() {
 
 		log.info("============place===========");
-		return "place";
+		return "place/place";
 	}
 
 

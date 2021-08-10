@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="UserInfo" type="com.dcm.zoobox.user.model.UserInfo"/>
 		<typeAlias alias="UserRole" type="com.dcm.zoobox.user.model.UserRole"/>
 		<typeAlias alias="UserSnsInfo" type="com.dcm.zoobox.user.model.UserSnsInfo"/>
-		<typeAlias alias="Place" type="com.dcm.zoobox.place.model.Place"/>
+		<typeAlias alias="Place" type="com.dcm.zoobox.place.model.WishListPlace"/>
 		<typeAlias alias="Main" type="com.dcm.zoobox.main.model.Main"/>
 		
 		<typeAlias alias="Board" type="com.dcm.zoobox.community.model.Board"/>
