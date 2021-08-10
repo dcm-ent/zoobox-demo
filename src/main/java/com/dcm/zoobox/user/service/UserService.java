@@ -1,6 +1,7 @@
 package com.dcm.zoobox.user.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.dcm.zoobox.user.model.User;
 
@@ -9,4 +10,5 @@ public interface UserService {
 	public User getUser(Long userId);
 	public HashMap<String, Object> checkDuplicatedEmail(String email);
 	public HashMap<String, Object> checkDuplicatedNickname(String nickname);
+	public List<String> getPetBreed(int cateNum);
 }
