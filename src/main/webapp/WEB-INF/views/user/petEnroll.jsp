@@ -162,7 +162,7 @@ pageEncoding="UTF-8"%>
     <!-- /#wrapper -->
     <jsp:include page="/footer"></jsp:include>
     <!-- jQuery -->
-    <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>6  
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/zoobox/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -176,8 +176,8 @@ pageEncoding="UTF-8"%>
         $("#petBreedInput").click(function(){
         	$("#petBreedDiv").show();
         	console.log(1);
-        	$(".petBreedList").on("click","li",function(){
-        		petBreed = $(this).data("petBreed");
+        	$(".petBreedList").on("click","PetBreed",function(){
+        		petBreed = $(this).data("PetBreed.petBreed");
         		console.log("petBreed = " + petBreed);
         		 $("#petBreedInput").val(petBreed);
         		 $("#petBreedInput").html(petBreed);

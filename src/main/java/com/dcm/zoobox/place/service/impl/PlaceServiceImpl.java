@@ -1,8 +1,8 @@
 package com.dcm.zoobox.place.service.impl;
 
 import com.dcm.zoobox.place.mapper.PlaceMapper;
+
 import com.dcm.zoobox.place.model.AnimalBusi;
-import com.dcm.zoobox.place.model.kakao.ResDocuments;
 import lombok.Setter;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class PlaceServiceImpl implements PlaceService {
 
 
         while(true){
-            ResDocuments entity=new ResDocuments();
+           
 
         }
 
