@@ -1,14 +1,15 @@
 package com.dcm.zoobox.user.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dcm.zoobox.user.mapper.UserMapper;
+import com.dcm.zoobox.user.model.PetBreed;
 import com.dcm.zoobox.user.model.User;
 import com.dcm.zoobox.user.service.UserService;
-
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -22,9 +23,16 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void createUser(User user) {
-		Long userId = mapper.createUser(user);
+		log.info(user.getPhone());
+		user.setEmail(user.getEmail()+"@"+user.getEmailInfo());
+		user.setBirthdate(user.getYearValue()+user.getMonthValue()+user.getDayValue());
+		user.setAddress(user.getAddress()+" "+user.getDetailAddress());
+		user.setRoadAddress(user.getRoadAddress()+" "+user.getDetailAddress());
+		mapper.createUser(user);
+		Long userId = user.getUserId();
+		log.info("userId"+userId);
 		mapper.createUserDetails(userId);
-		log.info("등록완료 ");
+		log.info("등록완료");
 		
 	}
 
@@ -49,6 +57,11 @@ public class UserServiceImpl implements UserService{
 		int nicknameCheck = mapper.checkDuplicatedNickname(nickname);
 		map.put("nicknameCheck", nicknameCheck); //닉네임이 존재하면 1, 없으면 0
 		return map;
+	}
+
+	@Override
+	public List<PetBreed> getPetBreed(int cateNum) {
+		return mapper.getPetBreed(cateNum);
 	}
 
 }

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dcm.zoobox.user.model.User;
 import com.dcm.zoobox.user.service.UserService;
@@ -37,9 +39,24 @@ public class UserController {
 	public void login() {
 		log.info("login form");
 	}
+	@GetMapping("/petCategorySelect")
+	public void petCategorySelect() {
+		log.info("pet Select");
+	}
+	@GetMapping("/petEnroll/{cateNum}")
+	public String petEnroll(@PathVariable("cateNum") int cateNum,Model model) {
+		log.info("pet Enroll form");
+		model.addAttribute("petBreedList", service.getPetBreed(cateNum));
+		return "/user/petEnroll";
+	}
+	
+	
+	
 	@PostMapping("/create")
-	public void createUser(User user) {
+	public String createUser(User user, RedirectAttributes rttr) {
 		service.createUser(user);
+		
+		return "redirect:/home";
 	}
 	
 	//이메일 중복확인
@@ -58,5 +75,5 @@ public class UserController {
 				
 				return service.checkDuplicatedNickname(nickname);
 			}
-
+		
 }
