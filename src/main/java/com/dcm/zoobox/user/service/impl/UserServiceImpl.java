@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dcm.zoobox.user.mapper.UserMapper;
+import com.dcm.zoobox.user.model.PetBreed;
 import com.dcm.zoobox.user.model.User;
 import com.dcm.zoobox.user.service.UserService;
-
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<String> getPetBreed(int cateNum) {
+	public List<PetBreed> getPetBreed(int cateNum) {
 		return mapper.getPetBreed(cateNum);
 	}
 

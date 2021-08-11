@@ -47,19 +47,19 @@ public class BusinessServiceImpl implements BusinessService {
             con.setRequestProperty("Content-Type","application/json");
             con.setRequestProperty("Accept","application/json");
             con.setDoOutput(true);
-            con.setDoInput(true);
             int responseCodes=con.getResponseCode();
-            String resMsg=con.getResponseMessage();
             System.out.println("res: "+responseCodes);
-            System.out.println("res: "+resMsg);
+
             //post방식으로 스트링을 통한 json전송
 
             BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(con.getOutputStream()));
+            //OutputStreamWriter bw=new OutputStreamWriter(con());
+
             bw.write(jsonBody.toString());
             bw.flush();
             bw.close();
             //서버에서 보낸 응답데이터 수신 받기
-            BufferedReader in =new BufferedReader(new InputStreamReader(con.getInputStream(),"utf-8"));
+            BufferedReader in =new BufferedReader(new InputStreamReader(con.getInputStream()));
            String returnMsg=in.readLine();
            System.out.println("응답메시지: "+con.getResponseMessage());
 

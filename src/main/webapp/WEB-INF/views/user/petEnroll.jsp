@@ -10,8 +10,11 @@ pageEncoding="UTF-8"%>
     #flex {
       display: flex;
     }
-    #resetButton {
-      float: right;
+    #petBreedDiv {
+      height:300px;
+      overflow-x:hidden;
+      overflow-y:scroll;
+      cursor: pointer;
     }
   </style>
   <body>
@@ -86,15 +89,6 @@ pageEncoding="UTF-8"%>
                         />
                         <div id="nameCheck"></div>
                       </div>
-                      <label>닉네임</label>
-                      <div class="form-group" id="flex">
-                        <input
-                          class="form-control"
-                          id="nicknameInput"
-                          name="nickname"
-                          placeholder="닉네임을 입력해주세요"
-                          maxlength="25"
-                        />
                         <button
                           class="btn btn-default"
                           id="nicknameBtn"
@@ -105,126 +99,15 @@ pageEncoding="UTF-8"%>
                         <div id="nicknameCheck"></div>
                       </div>
 
-                      <div class="form-group">
-                        <label>휴대폰 번호</label>
 
-                        <input
-                          class="form-control"
-                          placeholder="휴대폰 번호를 입력해주세요"
-                          maxlength="20"
-                          type="number"
-                          name="phone"
-                        />
-                        <button class="btn btn-default" type="button">
-                          휴대폰 인증
-                        </button>
-                      </div>
-
-                      <input
-                        type="text"
-                        id="sample4_postcode"
-                        placeholder="우편번호"
-                        class="form-control"
-                        name="zipcode"
-                      />
-                      <input
-                        type="button"
-                        onclick="sample4_execDaumPostcode()"
-                        value="우편번호 찾기"
-                        class="btn btn-default"
-                      /><br />
-                      <input
-                        type="text"
-                        id="sample4_roadAddress"
-                        placeholder="도로명주소"
-                        class="form-control"
-                        name="roadAddress"
-                      />
-                      <input
-                        type="text"
-                        id="sample4_jibunAddress"
-                        placeholder="지번주소"
-                        class="form-control"
-                        name="address"
-                      />
-                      <span
-                        id="guide"
-                        style="color: #999; display: none"
-                      ></span>
-                      <input
-                        type="text"
-                        id="sample4_detailAddress"
-                        placeholder="상세주소"
-                        class="form-control"
-                        name="detailAddress"
-                      />
-                      <input
-                        type="hidden"
-                        id="sample4_extraAddress"
-                        class="form-control"
-                        placeholder="참고항목"
-                      />
-                      <label>생년월일</label>
-                      <div class="form-group" id="flex">
-                        <input
-                          class="form-control"
-                          id="yearValue"
-                          type="text"
-                          name="yearValue"
-                          size="5"
-                          class="inBorder"
-                        />년
-                        <select class="form-control" name="monthValue">
-                          <option value="01">01</option>
-                          <option value="02">02</option>
-                          <option value="03">03</option>
-                          <option value="04">04</option>
-                          <option value="05">05</option>
-                          <option value="06">06</option>
-                          <option value="07">07</option>
-                          <option value="08">08</option>
-                          <option value="09">09</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                        </select>
-
-                        월
-                        <select class="form-control" name="dayValue">
-                          <option value="01">01</option>
-                          <option value="02">02</option>
-                          <option value="03">03</option>
-                          <option value="04">04</option>
-                          <option value="05">05</option>
-                          <option value="06">06</option>
-                          <option value="07">07</option>
-                          <option value="08">08</option>
-                          <option value="09">09</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                          <option value="20">20</option>
-                          <option value="21">21</option>
-                          <option value="22">22</option>
-                          <option value="23">23</option>
-                          <option value="24">24</option>
-                          <option value="25">25</option>
-                          <option value="26">26</option>
-                          <option value="27">27</option>
-                          <option value="28">28</option>
-                          <option value="29">29</option>
-                          <option value="30">30</option>
-                          <option value="31">31</option>
-                        </select>
-
-                        일
+                      <label>어떤 종의 동물을 키우시나요?</label>
+                       <input type="text" class="form-control" placeholder="검색해보세요" id="petBreedInput">
+                      <div class="form-group"  id="petBreedDiv">
+                        <ul name="petBreedUl">
+                          <c:forEach items="${petBreedList}" var="PetBreed">
+                            <li class="form-control petBreedList" value="<c:out value="${PetBreed.petBreed}"/>"><c:out value="${PetBreed.petBreed}"/></li>
+                          </c:forEach>
+                        </ul>
                       </div>
                       <label>성별</label>
                       <div class="form-group">
@@ -235,7 +118,7 @@ pageEncoding="UTF-8"%>
                             id="optionsRadiosInline1"
                             value="male"
                             checked
-                          />남성
+                          />수컷
                         </label>
                         <label class="radio-inline">
                           <input
@@ -243,7 +126,7 @@ pageEncoding="UTF-8"%>
                             name="gender"
                             id="optionsRadiosInline2"
                             value="female"
-                          />여성
+                          />암컷
                         </label>
                       </div>
                       <button
@@ -286,5 +169,21 @@ pageEncoding="UTF-8"%>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/zoobox/resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <script>
+      $(document).ready(function(){
+    	var petBreed="";
+        $("#petBreedDiv").hide();
+        $("#petBreedInput").click(function(){
+        	$("#petBreedDiv").show();
+        	console.log(1);
+        	$(".petBreedList").on("click","li",function(){
+        		petBreed = $(this).data("petBreed");
+        		console.log("petBreed = " + petBreed);
+        		 $("#petBreedInput").val(petBreed);
+        		 $("#petBreedInput").html(petBreed);
+        	});
+        });
+      });
+    </script>
   </body>
 </html>

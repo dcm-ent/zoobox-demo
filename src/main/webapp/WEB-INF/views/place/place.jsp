@@ -7,7 +7,8 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="<c:url value='/resources/dist/css/comm.css' />"/>
+   <link rel="stylesheet" href="<c:url value='/resources/css/comm.css' />"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=acd386cc1841a251291253da3ad9e396"></script>
     <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
@@ -53,8 +54,11 @@
     <div class="area">
         <h3>지역별 검색</h3>
         <h3>키워드  검색</h3>
-        <input type="text" id="searchPlace" placeholder="검색하실 키워드 입력해주세요"/>
-        <input type="button" onclick="search_Place();"/>
+        <div>
+            <input type="text" id="query" placeholder="검색하실 키워드 입력해주세요"/>
+            <button type="button" id="search_Place" onclick="search_Place();">검색</button>
+        </div>
+
         <div class="area_example">
             <button onclick="search_ani_hopital">동물병원</button>
             <button>반려동물 분양</button>
@@ -139,16 +143,16 @@
     //키워드로 검색
 
     function search_Place(){
-        const searchKeyword=$("searchPlace").val();
+        const searchKeyword=$("#query").val();
+        alert("키워드:  "+searchKeyword);
         $.ajax({
             type:'get',
-            url:'${path}/place/searchPlace';
-            data:{keyword:searchKeyword},
+            url:'${path}/place/serachPlace',
+            data:{"query":searchKeyword},
             success:function(data){
                 alert("햇다")
             }
-
         })
-    }
+    };
 </script>
 </html>

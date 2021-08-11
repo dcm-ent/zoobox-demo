@@ -43,6 +43,7 @@
 		<result property="type" column="type"/>
 	</resultMap>
 	
+	
 	<insert id="createUser" parameterType="User">
 		insert into user(email, password, birthdate, username, nickname, phone, gender,address,road_address,zipcode)
 		values (#{email},#{password},#{birthdate},#{username},#{nickname},#{phone},#{gender},#{address},#{roadAddress},#{zipcode});
@@ -80,7 +81,7 @@
 	<select id="checkDuplicatedNickname" parameterType="String" resultType="Integer">
 	      SELECT COUNT(*) FROM user WHERE nickname=#{nickname}
 	</select>
-	<select id="getPetBreed" parameterType="int" resultType="String">
+	<select id="getPetBreed" parameterType="int" resultType="PetBreed">
 		select * from pet_breed where pet_category_number=#{cateNum}
 	</select>
 	

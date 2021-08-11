@@ -2,6 +2,7 @@ package com.dcm.zoobox.user.mapper;
 
 import java.util.List;
 
+import com.dcm.zoobox.user.model.PetBreed;
 import com.dcm.zoobox.user.model.User;
 
 public interface UserMapper {
@@ -10,5 +11,5 @@ public interface UserMapper {
 	public User getUser(Long userId);
 	public int checkDuplicatedEmail(String email);
 	public int checkDuplicatedNickname(String nickname);
-	public List<String> getPetBreed(int cateNum);
+	public List<PetBreed> getPetBreed(int cateNum);
 }

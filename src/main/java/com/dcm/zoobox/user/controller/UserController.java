@@ -46,7 +46,7 @@ public class UserController {
 	@GetMapping("/petEnroll/{cateNum}")
 	public String petEnroll(@PathVariable("cateNum") int cateNum,Model model) {
 		log.info("pet Enroll form");
-		model.addAttribute("petBreed", service.getPetBreed(cateNum));
+		model.addAttribute("petBreedList", service.getPetBreed(cateNum));
 		return "/user/petEnroll";
 	}
 	
