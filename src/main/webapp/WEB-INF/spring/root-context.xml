@@ -49,6 +49,9 @@
 		<mybatis-spring:scan base-package="com.dcm.zoobox.user.mapper"/>
 		<mybatis-spring:scan base-package="com.dcm.zoobox.place.mapper"/>
 		<mybatis-spring:scan base-package="com.dcm.zoobox.main.mapper"/>
+		<mybatis-spring:scan base-package="com.dcm.zoobox.article.mapper"/>
+		<mybatis-spring:scan base-package="com.dcm.zoobox.comment.mapper"/>
+		<mybatis-spring:scan base-package="com.dcm.zoobox.board.mapper"/>
 		
 		<mybatis-spring:scan base-package="com.dcm.zoobox.community.mapper"/>
 	<context:component-scan base-package="com.dcm.zoobox.*"/>
