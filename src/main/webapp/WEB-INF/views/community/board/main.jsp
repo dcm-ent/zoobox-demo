@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <title>ZOOBOX</title>
 <link href="<c:url value='/resources/lib/quill/quill.snow.css'/>" rel="stylesheet">
-<link href="<c:url value='resources/lib/quill/katex.min.css'/>" rel="stylesheet" />
+<link href="<c:url value='/resources/lib/quill/katex.min.css'/>" rel="stylesheet" />
 </head>
 <body>
 	<header>
@@ -16,7 +16,7 @@
 		<div class="edit">
 			<form>
 				<div class="mb-2">
-					<input type="text" class="title" id="title" placeholder="제목" />
+					<input type="text" class="title" id="title" placeholder="제목" style="height: 30px; width: 1106px" />
 				</div>
 				<div id="toolbar-container">
 					<span class="ql-formats"> <select class="ql-header">
@@ -27,15 +27,19 @@
 					</span> <span class="ql-formats">
 						<button class="ql-bold"></button>
 						<button class="ql-italic"></button>
-						<button class="ql-underline"></button> <select class="ql-color">
+						<button class="ql-underline"></button> 
+						<select class="ql-color">
 					</select>
+					
+					<select class="ql-align">
+						</select>
 					</span> <span class="ql-formats">
 						<button class="ql-link"></button>
 						<button class="ql-image"></button>
 						<button class="ql-video"></button>
 					</span>
 				</div>
-				<div id="editor-container" style="height: 450px; width: 500px"></div>
+				<div id="editor-container" style="height: 600px; width: 1106px"></div>
 
 			</form>
 		</div>

@@ -31,15 +31,15 @@ function getData() {
 
 
 async function save(e){
-	var data = getData();
-	var a = Object.assign(data, { status: 1 });
+	const data = getData();
+	const a = Object.assign(data, { status: 1 });
 	
 	const resp = await axios.post("/zoobox/article/insertArticle.do", data);
 	const articleId = resp.data;
 	
+	debugger;
 	alert(`게시글 번호는 ${articleId} 입니다`);
-	
-	//location.href = `/zoobox/article/view.do?articleId=${articleId}`;
+	location.href = `/zoobox/article/view.do?articleId=${articleId}`;
 	
 } 
 

@@ -21,17 +21,16 @@
 		<result property="fileId" column="file_id" />
 	</resultMap>
 
-	<insert id="insertArticle" parameterType="Article"
-		useGeneratedKeys="true" keyProperty="articleId">
+	<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyProperty="articleId">
 		insert into article(main_id, board_id, user_id, title, content, nickname, reg_date, update_date, click_cnt, reply_cnt, del_yn, file_id)
 		values(1001,2,1,#{title},#{content},'스퍼스',now(),now(),1,1,1,null)
 	</insert>
 
 
 	<select id="getArticle" parameterType="int" resultMap="articleMap">
-		select article_id, main_id, board_id, user_id, title, content, nickname, reg_date
+		select article_id, main_id, board_id, user_id, title, content, nickname, DATE_FORMAT(reg_date, '%Y-%m-%d'), click_cnt, reply_cnt
 		from article
-		where article_id = '21'
+		where article_id = #{articleId}
 	</select>
 
 </mapper>	
