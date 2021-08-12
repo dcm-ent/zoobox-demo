@@ -10,4 +10,5 @@ public class AttachFile {
 	public String path;
 	public Long size;
 	public String type;
+	
 }
