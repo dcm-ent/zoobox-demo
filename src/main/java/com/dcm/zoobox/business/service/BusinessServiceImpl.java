@@ -27,7 +27,7 @@ public class BusinessServiceImpl implements BusinessService {
     public void searchNumber(String bno) throws IOException {
 
         String serviceKey="XlNVunWdX7nHPurouFfkPI1BREzio73ddq5aNscHWr3VUk267GRLsUyeVVkGdVhUgDqkHEpsAoVBF6V5Dk4%2F2w%3D%3D";
-        String searchUrl="https://api.odcloud.kr/api/nts-businessman/v1/status?";
+        String searchUrl="https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="+serviceKey;
 
         //post방식으로 스트링을 통한 json전송
         JSONObject jsonObject=new JSONObject();
