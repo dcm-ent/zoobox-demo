@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings> 
 	
 	<typeAliases>
+		<typeAlias alias="AttachFile" type="com.dcm.zoobox.file.model.AttachFile" />
 		<typeAlias alias="User" type="com.dcm.zoobox.user.model.User"/>
 		<typeAlias alias="UserInfo" type="com.dcm.zoobox.user.model.UserInfo"/>
 		<typeAlias alias="UserRole" type="com.dcm.zoobox.user.model.UserRole"/>
@@ -24,10 +25,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="mappers/filemapper.xml" />
 		<mapper resource="mappers/usermapper.xml"/>
 		<mapper resource="mappers/placemapper.xml"/>
 		<mapper resource="mappers/mainmapper.xml"/>
-
 		<mapper resource="mappers/boardmapper.xml"/>
 		<mapper resource="mappers/articlemapper.xml"/>
 		<mapper resource="mappers/commentmapper.xml"/>

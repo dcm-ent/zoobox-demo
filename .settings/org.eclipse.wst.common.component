@@ -5,7 +5,9 @@
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
-        <dependent-module archiveName="mysql-connector-java-8.0.25.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/zoobox/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.25.jar">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-test-sources/test-annotations"/>
+        <dependent-module archiveName="mysql-connector-java-8.0.25.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/zoobox/src/main/webapp/resources/lib/mysql-connector-java-8.0.25.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
 		<property name="java-output-path" value="target/classes"/>

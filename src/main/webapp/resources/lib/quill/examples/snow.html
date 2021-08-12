@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Snow Theme - Quill Rich Text Editor</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="language" content="english" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="../quill.snow.css" />
+
+    <style>
+      .standalone-container {
+        margin: 50px auto;
+        max-width: 720px;
+      }
+      #snow-container {
+        height: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="standalone-container">
+      <div id="snow-container"></div>
+    </div>
+
+    <script src="../quill.min.js"></script>
+
+    <script>
+      var quill = new Quill("#snow-container", {
+        placeholder: "Compose an epic...",
+        theme: "snow",
+      });
+    </script>
+  </body>
+</html>

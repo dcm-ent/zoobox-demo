@@ -44,6 +44,7 @@ pageEncoding="UTF-8"%>
                     >
                       <div class="form-group uploadDiv">
                         <div class="uploadResult">
+                          <ul></ul>
                           <img
                             id="default-profile"
                             src="/zoobox/resources/img/profile.png"
@@ -162,7 +163,7 @@ pageEncoding="UTF-8"%>
     <!-- /#wrapper -->
     <jsp:include page="/footer"></jsp:include>
     <!-- jQuery -->
-    <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/zoobox/resources/vendor/jquery/jquery.min.js"></script>6  
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/zoobox/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -170,14 +171,116 @@ pageEncoding="UTF-8"%>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/zoobox/resources/vendor/metisMenu/metisMenu.min.js"></script>
     <script>
-      $(document).ready(function(){
-    	var petBreed="";
+      $(document).ready(function(e){
+    	
+      var formObj = $("form[role='form']");
+      $("button[type='submit']").click(function(e){
+        e.preventDefault();
+
+        var str = "";
+        $(".uploadResult ul li").each(function(i,obj){
+          var jobj = $(obj);
+
+          str+= 
+          "<input type='hidden' name=attachList["+ 
+          i +
+          "].realName' value'"+
+          jobj.data("realName")+
+          "'>";
+           str +=
+          "<input type='hidden' name='attachList[" +
+          i +
+          "].saveName' value='" +
+          jobj.data("saveName") +
+          "'>";
+        str +=
+          "<input type='hidden' name='attachList[" +
+          i +
+          "].path' value='" +
+          jobj.data("path") +
+          "'>";
+        str +=
+          "<input type='hidden' name='attachList[" +
+          i +
+          "].type' value='" +
+          jobj.data("type") +
+          "'>"; 
+        str +=
+          "<input type='hidden' name='attachList[" +
+          i +
+          "].size' value='" +
+          jobj.data("size") +
+          "'>"; 
+        });
+
+        formObj.append(str).submit();
+
+      });
+      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+      var maxSize = 5242880;
+
+    function checkExtension(realName, size) {
+      if (size >= maxSize) {
+        alert("파일 사이즈 초과");
+        return false;
+      }
+      if (regex.test(realName)) {
+        alert("해당 종류의 파일은 업로드할 수 없습니다.");
+        return false;
+      }
+      return true;
+    } //end function checkExtensiont
+
+    function showUploadResult(uploadResultArr) {
+      if (!uploadResultArr || uploadResultArr.length == 0) {
+        return;
+      }
+      var uploadUL = $(".uploadResult ul");
+
+      var str = "";
+
+      $(uploadResultArr).each(function (i, obj) {
+        //image type
+        if (obj.image) {
+          var fileCallPath = encodeURIComponent(
+            obj.path + "/s_" + obj.saveName + "_" + obj.realName
+          );
+          str += "<li data-path='" + obj.path + "'";
+          str +=
+            "data-saveName='" +
+            obj.uuid +
+            "' data-realName='" +
+            obj.realName +
+            "' data-type='" +
+            obj.image +
+            "'";
+          str += "><div>";
+          str += "<span> " + obj.realName + "</span>";
+          str += "<button type='button' data-file='" + fileCallPath + "'";
+          str +=
+            "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+          str += "<img src='/display?realName=" + fileCallPath + "'>";
+          str += "</div>";
+          str + "</li>";
+        } else {
+         alert("사진 파일이 아닙니다.");
+        }
+      });
+      uploadUL.append(str);
+    }
+      
+      
+      
+      
+      
+      
+      var petBreed="";
         $("#petBreedDiv").hide();
-        $("#petBreedInput").click(function(){
+        $("#petBreedInput").click(function(e){
         	$("#petBreedDiv").show();
         	console.log(1);
-        	$(".petBreedList").on("click","li",function(){
-        		petBreed = $(this).data("petBreed");
+        	$(".petBreedList").on("click","PetBreed",function(){
+        		petBreed = $(this).data("PetBreed.petBreed");
         		console.log("petBreed = " + petBreed);
         		 $("#petBreedInput").val(petBreed);
         		 $("#petBreedInput").html(petBreed);

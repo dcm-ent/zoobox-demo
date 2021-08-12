@@ -4,6 +4,10 @@ import com.dcm.zoobox.community.model.Article;
 
 public interface ArticleService {
 
-	Article getArticle(Long valueOf);
+
+	int insertArticle(Article article);
+
+	Article getArticle(int articleId);
+
 
 }
