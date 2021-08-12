@@ -1,8 +1,11 @@
 package com.dcm.zoobox.place.controller;
 
 import com.dcm.zoobox.place.model.AnimalBusi;
+import com.dcm.zoobox.place.model.kakao.ResDocuments;
 import com.dcm.zoobox.place.service.PlaceService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Setter;
+import org.json.simple.parser.ParseException;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,6 +28,7 @@ import java.util.List;
  class PlaceRestApiController {
 
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
+
 
     @Setter(onMethod_ = @Autowired)
     private PlaceService placeService;
@@ -155,10 +159,16 @@ import java.util.List;
     //카카오 키워드 검색 api
     @RequestMapping(value="/place/serachPlace",method=RequestMethod.GET)
     @ResponseBody
-    public String serach(@RequestParam String query) throws MalformedURLException, UnsupportedEncodingException {
+    public List<ResDocuments> serach(@RequestParam String query) throws MalformedURLException, UnsupportedEncodingException, ParseException, JsonProcessingException {
         logger.info("query"+query);
-        placeService.search(query);
-        return "place/place";
+       List<ResDocuments> list= placeService.search(query);
+        return list;
+    }
+
+    @RequestMapping(value="/place/searchKeyword")
+    @ResponseBody
+    public String searchKeyword(){
+        return "";
     }
 
 }

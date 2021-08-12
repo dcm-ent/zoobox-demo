@@ -14,13 +14,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="UserInfo" type="com.dcm.zoobox.user.model.UserInfo"/>
 		<typeAlias alias="UserRole" type="com.dcm.zoobox.user.model.UserRole"/>
 		<typeAlias alias="UserSnsInfo" type="com.dcm.zoobox.user.model.UserSnsInfo"/>
-<<<<<<< HEAD
 		<typeAlias alias="PetBreed" type="com.dcm.zoobox.user.model.PetBreed"/>
 		<typeAlias alias="PetCategory" type="com.dcm.zoobox.user.model.PetCategory"/>
-		<typeAlias alias="Place" type="com.dcm.zoobox.place.model.Place"/>
-=======
 		<typeAlias alias="Place" type="com.dcm.zoobox.place.model.WishListPlace"/>
->>>>>>> branch 'dev-0729' of https://github.com/dcm-ent/zoobox-demo.git
 		<typeAlias alias="Main" type="com.dcm.zoobox.main.model.Main"/>
 		<typeAlias alias="Board" type="com.dcm.zoobox.community.model.Board"/>
 		<typeAlias alias="Article" type="com.dcm.zoobox.community.model.Article"/>

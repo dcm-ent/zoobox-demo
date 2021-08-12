@@ -3,14 +3,21 @@ package com.dcm.zoobox.business.service;
 import com.google.gson.JsonParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -20,7 +27,7 @@ public class BusinessServiceImpl implements BusinessService {
     public void searchNumber(String bno) throws IOException {
 
         String serviceKey="XlNVunWdX7nHPurouFfkPI1BREzio73ddq5aNscHWr3VUk267GRLsUyeVVkGdVhUgDqkHEpsAoVBF6V5Dk4%2F2w%3D%3D";
-        String searchUrl="https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="+serviceKey;
+        String searchUrl="https://api.odcloud.kr/api/nts-businessman/v1/status?";
 
         //post방식으로 스트링을 통한 json전송
         JSONObject jsonObject=new JSONObject();
