@@ -1,6 +1,7 @@
 package com.dcm.zoobox.place.controller;
 
 import com.dcm.zoobox.place.model.AnimalBusi;
+
 import com.dcm.zoobox.place.model.kakao.ResDocuments;
 import com.dcm.zoobox.place.service.PlaceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
