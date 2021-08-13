@@ -4,10 +4,17 @@
   justify-content: center;
 }
 %titleText {
-  font-size: 18px;
+  font-size: 20px;
   margin-left: 15px;
   color: #333;
   font-weight: 400;
+}
+%joinInput {
+  border: none;
+  padding-left: 3%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 12px;
 }
 
 * {
@@ -28,78 +35,9 @@ html {
   flex-direction: column;
   background-color: #f7f8fa;
 }
-header {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
+// header 부분 가져온 것
+@import "header";
 
-  .header_box {
-    width: 1400px;
-    display: flex;
-    line-height: 80px;
-    justify-content: space-between;
-    & figure {
-      display: flex;
-      align-items: center;
-    }
-    & .menu {
-      display: flex;
-      width: 500px;
-      justify-content: space-between;
-      & li {
-        font-weight: 500;
-      }
-    }
-    & input {
-      margin: auto 0;
-      height: 35px;
-      border-radius: 35px;
-      border: 1px solid #999;
-      &::placeholder {
-        padding-left: 20px;
-      }
-    }
-    & .alarm {
-      display: flex;
-      & li {
-        @extend %displayFlex;
-        margin: 0 12px;
-      }
-    }
-  }
-}
-.main_bg {
-  width: 100%;
-  height: 267px;
-  background-image: url(../../img/main_img.png);
-  @extend %displayFlex;
-  position: relative;
-  & .main_bg_t {
-    width: 929px;
-    height: 171px;
-    background-image: url(../../img/bg_text.png);
-    @extend %displayFlex;
-    flex-direction: column;
-    position: relative;
-    z-index: 10;
-    & h2 {
-      color: #fff;
-      font-size: 35px;
-      font-weight: 400;
-    }
-    & h3 {
-      color: #fff;
-      font-size: 36px;
-    }
-  }
-  & div:nth-child(1) {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.18);
-    position: absolute;
-  }
-}
 .main_contents {
   width: 1400px;
   display: flex;
@@ -314,10 +252,9 @@ header {
       }
     }
     & .new_place {
-      margin-top: 40px;
-      & h3 {
+      margin-top: 50px;
+      & > h3 {
         @extend %titleText;
-        margin-top: 50px;
       }
       & ul {
         width: 100%;
@@ -354,6 +291,7 @@ header {
     }
     & .tips {
       height: 650px;
+      background-color: chocolate;
     }
     & .review {
       height: 440px;
@@ -361,6 +299,9 @@ header {
     }
   }
 }
+// join_page
+@import "join";
+@import "page";
 footer {
   width: 100%;
   height: 200px;

@@ -1,0 +1,202 @@
+.white_bg {
+  width: 100%;
+  height: 1350px;
+}
+.join_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+}
+.join {
+  background-color: #fff;
+  width: 45%;
+  border-radius: 2%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 30%;
+  z-index: 100;
+  & h2,
+  p,
+  button,
+  input {
+    font-family: "GmarketSansMedium";
+  }
+  & p {
+    font-weight: 600;
+    margin-top: 34px;
+  }
+  & input {
+    font-weight: 600;
+    &::placeholder {
+      color: #aaa;
+      font-size: 15px;
+    }
+  }
+  & > div {
+    margin-top: 60px;
+    width: 75%;
+  }
+  & h2 {
+    font-weight: 600;
+    font-size: 35px;
+  }
+  & .email {
+    margin-top: 54px;
+    & > div {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    & p {
+      margin-left: 3%;
+      font-size: 16px;
+    }
+    & input {
+      width: 84%;
+      height: 45px;
+      background-color: #f3f6f9;
+      @extend %joinInput;
+    }
+    & button {
+      width: 15%;
+      height: 45px;
+      color: #fff;
+      background-color: #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  }
+  & .password {
+    margin-top: 0;
+    & p {
+      margin-left: 3%;
+      font-size: 16px;
+    }
+    & input {
+      @extend %joinInput;
+      width: 100%;
+      height: 45px;
+      background: #f3f6f9 97% 50% url(../../img/icon_password.png) no-repeat;
+    }
+    & ul {
+      margin-top: 3px;
+      display: flex;
+      margin-left: 3%;
+      & li {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+        & p {
+          font-size: 11px;
+          color: #aaaaaa;
+          font-weight: 400;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  & .birth {
+    margin-top: 0px;
+    & p {
+      margin-left: 3%;
+      font-size: 16px;
+    }
+    & input {
+      @extend %joinInput;
+      width: 100%;
+      height: 45px;
+      background-color: #f3f6f9;
+    }
+    & ul {
+      margin-top: 3px;
+      display: flex;
+      margin-left: 3%;
+      & li {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+        & p {
+          font-size: 10px;
+          color: #aaaaaa;
+        }
+      }
+    }
+  }
+  & .adress {
+    margin-top: 0px;
+    & p {
+      margin-left: 3%;
+      font-size: 16px;
+    }
+    & > div {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    & > div input:nth-child(1) {
+      width: 84%;
+      @extend %joinInput;
+      height: 45px;
+      background-color: #f3f6f9;
+    }
+    & > div button {
+      width: 15%;
+      height: 45px;
+      color: #fff;
+      background-color: #fbc03e;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    & input:nth-child(3) {
+      width: 100%;
+      @extend %joinInput;
+      height: 45px;
+      background-color: #f3f6f9;
+    }
+  }
+  & .gender {
+    margin-top: 0px;
+    & p {
+      margin-left: 3%;
+      font-size: 16px;
+    }
+    & div {
+      margin-top: 12px;
+      & input:nth-child(3) {
+        margin-left: 5%;
+      }
+      & label {
+        font-size: 16px;
+      }
+    }
+  }
+  & .completion {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    & button {
+      width: 49%;
+      height: 45px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 18px;
+      &:nth-child(1) {
+        background-color: #cccccc;
+      }
+      &:nth-child(2) {
+        background-color: #fbc03e;
+      }
+    }
+  }
+}

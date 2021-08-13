@@ -1,0 +1,325 @@
+// reset
+* {
+  box-sizing: border-box;
+}
+img {
+  border: none;
+}
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+// layout
+#wrap {
+  width: 100%;
+}
+#container {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+// text_box
+#text_box {
+  width: 1300px;
+  margin: 0 auto;
+  & #text_top {
+    border-bottom: 3px solid grey;
+    padding: 10px 0px;
+    height: 70px;
+    position: relative;
+    & p {
+      float: left;
+      font-weight: bold;
+      font-size: 18px;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translatey(-50%);
+    }
+    & #text_top_right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translatey(-50%);
+      & ul {
+        position: relative;
+        & li {
+          display: inline-block;
+          font-size: 14px;
+          & img {
+            width: 22px;
+            height: 22px;
+          }
+        }
+        & li:nth-child(1) {
+          position: absolute;
+          left: -63px;
+          top: -5px;
+          & img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+        }
+        & li:nth-child(2) {
+          position: absolute;
+          left: -28px;
+        }
+        & li:nth-child(3) {
+          color: grey;
+          & span {
+            color: black;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  & #text_bottom {
+    border-bottom: 1px solid lightgrey;
+    padding: 20px 0 60px 0;
+    & h1 {
+      margin-bottom: 20px;
+    }
+    & p {
+      color: grey;
+      font-weight: bold;
+      line-height: 160%;
+      & span {
+        font-size: 12px;
+      }
+    }
+    & p:nth-child(3) {
+      line-height: 180%;
+    }
+  }
+}
+
+// button_box
+#button_box {
+  width: 100%;
+  border-bottom: 3px solid lightgrey;
+  & ul {
+    position: relative;
+    padding: 70px 0;
+    & li {
+      display: inline-block;
+      position: absolute;
+      cursor: pointer;
+      & img {
+        border: 1px solid lightgrey;
+        border-radius: 50%;
+      }
+    }
+    & li:nth-child(1),
+    li:nth-child(3) {
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 5px 15px;
+      font-weight: bold;
+    }
+    & li:nth-child(1) {
+      left: 50px;
+      top: 50%;
+      transform: translatey(-50%);
+    }
+    & li:nth-child(2) {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.5s;
+    }
+    & li:nth-child(2):hover {
+      top: 40%;
+    }
+    & li:nth-child(3) {
+      right: 50px;
+      top: 50%;
+      transform: translatey(-50%);
+    }
+  }
+}
+
+// comment_box
+#comment_box {
+  & #comment_top {
+    padding: 12px 0;
+    & ul {
+      & li {
+        display: inline-block;
+        padding: 10px 0;
+        & img {
+          background-color: #ff7700;
+          padding: 2px 0.5px;
+          border-radius: 50%;
+          width: 18px;
+        }
+      }
+    }
+    & ul:nth-child(1) {
+      float: left;
+      & li {
+      }
+      & li:nth-child(2) {
+        font-weight: bold;
+      }
+      & li:nth-child(3) {
+        color: #ff7700;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+    }
+    & ul:nth-child(2) {
+      float: right;
+      & li {
+      }
+      & li:nth-child(1) {
+        & a {
+          background-color: #ff7700;
+          color: white;
+          padding: 5px 15px;
+          border-radius: 20px;
+        }
+      }
+      & li:nth-child(2) {
+        & a {
+          background-color: #808080;
+          color: white;
+          padding: 5px 15px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+  & #comment_top:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  & #comment_bottom {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    background-color: lightgrey;
+    padding: 15px;
+    & div {
+      & textarea {
+        padding: 20px;
+        border: none;
+      }
+      & textarea::placeholder {
+        font-weight: bold;
+        color: grey;
+      }
+    }
+    & ul {
+      margin-top: 8px;
+      & li {
+        display: inline-block;
+        & a {
+          & img {
+            background-color: #ff7700;
+            width: 35px;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+    & ul:nth-child(2) {
+      float: left;
+      & li:nth-child(2) {
+        margin-left: 4px;
+      }
+    }
+    & ul:nth-child(3) {
+      float: right;
+      margin-top: 16px;
+      margin-right: 4px;
+      & li:nth-child(1) {
+        & a {
+          background-color: #808080;
+          color: white;
+          padding: 5px 10px;
+          font-weight: bold;
+          font-size: 14px;
+        }
+      }
+      & li:nth-child(2) {
+        & a {
+          background-color: #ff7700;
+          color: white;
+          padding: 5px 10px;
+          font-weight: bold;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  & #comment_bottom:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+// user_comment
+#user_comment {
+  & div {
+    border-bottom: 1px solid rgb(181, 181, 181);
+    padding: 15px 5px 10px 5px;
+    & h1 {
+      float: left;
+      padding-right: 10px;
+      & img {
+        border-radius: 50%;
+        width: 60px;
+      }
+    }
+    & ul {
+      & li {
+        display: inline-block;
+        & button {
+          padding: 5px 10px;
+          border: 1px solid rgb(174, 174, 174);
+          font-weight: bold;
+          font-size: 12px;
+        }
+        & button:nth-child(1) {
+        }
+        & button:nth-child(2) {
+          background-color: lightgrey;
+        }
+      }
+      & li:nth-child(2) {
+        font-size: 14px;
+        color: rgb(99, 99, 99);
+      }
+      & li:nth-child(3) {
+        float: right;
+      }
+    }
+    & p {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  }
+  & div:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  & div:nth-child(3),
+  div:nth-child(4) {
+    background-color: rgb(221, 221, 221);
+    & h1:before {
+      content: "└";
+      font-size: 18px;
+      padding: 20px;
+      position: relative;
+      top: -20px;
+    }
+    & button {
+      background-color: lightgrey;
+    }
+  }
+}
