@@ -86,6 +86,6 @@
 		</div>
 	</div>
 </div>
-
+<div>Move or commit them before Pull</div>
 </body>
 </html>
