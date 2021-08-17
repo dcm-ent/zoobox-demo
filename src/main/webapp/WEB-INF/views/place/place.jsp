@@ -86,6 +86,6 @@
 		</div>
 	</div>
 </div>
-<div>댓글</div>
+
 </body>
 </html>
