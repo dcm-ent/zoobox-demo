@@ -2,7 +2,35 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-<mapper namespace="com.dcm.zoobox.article.mapper.ArticleMapper">
-	
-</mapper>
+
+<mapper namespace="com.dcm.zoobox.community.mapper.ArticleMapper">
+
+	<resultMap id="articleMap" type="Article">
+		<result property="articleId" column="article_id" />
+		<result property="mainId" column="main_id" />
+		<result property="boardId" column="board_id" />
+		<result property="userId" column="user_id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="nickname" column="nickname" />
+		<result property="regDate" column="reg_date" />
+		<result property="updateDate" column="update_date" />
+		<result property="clickCnt" column="click_cnt" />
+		<result property="replyCnt" column="reply_cnt" />
+		<result property="delYn" column="del_yn" />
+		<result property="fileId" column="file_id" />
+	</resultMap>
+
+	<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyProperty="articleId">
+		insert into article(main_id, board_id, user_id, title, content, nickname, reg_date, update_date, click_cnt, reply_cnt, del_yn, file_id)
+		values(1001,2,1,#{title},#{content},'스퍼스',now(),now(),1,1,1,null)
+	</insert>
+
+
+	<select id="getArticle" parameterType="int" resultMap="articleMap">
+		select article_id, main_id, board_id, user_id, title, content, nickname, DATE_FORMAT(reg_date, '%Y-%m-%d'), click_cnt, reply_cnt
+		from article
+		where article_id = #{articleId}
+	</select>
+
+</mapper>	

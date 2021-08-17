@@ -15,11 +15,12 @@ import lombok.NoArgsConstructor;
 public class Business {
 
     private String user_id;
-    private String busi_Name;
+    private String busi_WorkPlace;
+    private String busi_ornerName;
     private String busi_Number;
     private String busi_Phone;
     private String busi_Address;
-    private String busi_work_time;//¿î¿µ½Ã°£ ½ÃÀÛ½Ã°£
+    private String busi_work_time;//ìš´ì˜ì‹œê°„
     private String code_no;
     private String code_name;
     private String file_id;
@@ -27,7 +28,8 @@ public class Business {
     public MultiValueMap<String,String> toMultiValueMap(){
         Map map=new LinkedMultiValueMap<String,String>();
         map.put("number",busi_Number);
-        map.put("name",busi_Name);
+        map.put("name",busi_WorkPlace);
+        map.put("orner",busi_ornerName);
         map.put("address",busi_Address);
 
         return (MultiValueMap<String, String>) map;
