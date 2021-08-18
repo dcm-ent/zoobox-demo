@@ -27,11 +27,7 @@ public class UserController {
 	@Setter(onMethod_ = @Autowired)
 	private UserService service;
 	
-	@GetMapping("/user")
-	public void user() {
-		log.info("============user===========");
-	}
-	@GetMapping("/forms")
+	@GetMapping("/join")
 	public void forms() {
 		log.info("join form");
 	}
