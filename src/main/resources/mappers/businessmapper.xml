@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.dcm.zoobox.business.mapper.BusinessMapper" >
+
+	<insert id="buziEnllo" parameterType="business">
+		insert into biz(user_id,name,number,phone,address,code_no,code_name,file_id,owner_name,worktime)
+		values (#{user_id},#{busi_name},#{busi_Number},#{busi_Phone},#{busi_Address},#{code_no},#{code_name},#{file_id},#{busi_ownerName},#{busi_work_time})
+
+	</insert>
+
+		<update id="update" parameterType="business">
+			update table biz (user_id,name,number,phone,address,code_no,code_name,file_id,owner_name)
+			values (#{userId},#{busi_name},#{busi_Number},#{busi_Phone},#{busi_Address},#{code_no},#{code_name},#{file_id},#{busi_ownerName})
+            where user_id=#{user_id}
+
+		</update>
+	<select id="getInfo" parameterType="string" resultType="business">
+		select * from biz where user_id="#{user_id}";
+	</select>
+
+	
+</mapper>

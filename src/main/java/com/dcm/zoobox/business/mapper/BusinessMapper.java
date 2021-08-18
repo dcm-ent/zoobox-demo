@@ -1,13 +1,11 @@
-package com.dcm.zoobox.business.service;
+package com.dcm.zoobox.business.mapper;
 
 import com.dcm.zoobox.business.model.Business;
 import com.dcm.zoobox.user.model.User;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
-public interface BusinessService {
-    String searchNumber(String b_no) throws IOException;
+public interface BusinessMapper {
 
 
 
@@ -15,5 +13,8 @@ public interface BusinessService {
 
     Business getInfo(User userId);
 
-    int buziEnllo(Business business, MultipartFile[] file );
+
+    int buziEnllo(Business business);
+
+    int saveFile(MultipartFile[] file);
 }

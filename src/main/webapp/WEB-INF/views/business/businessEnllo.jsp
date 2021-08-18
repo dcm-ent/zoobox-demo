@@ -9,6 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page session="false" %>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+
+    request.setCharacterEncoding("UTF-8");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,28 +29,37 @@
 </head>
 <body>
 <div class="business-container">
+
+    <form action="${path}/busi/enllo" name="buzi_enllo" method="post" enctype="multipart/form-data">
+
+
     <div class="business-container-box">
         <div>
             <div class="businessName_description" >사업자 번호 :</div>
-            <input type="text" id="businessNumber" placeholder="예) 111-456-6666"/>
+            <input type="text" name="busi_Number" id="busi_Number" placeholder="예) 111-456-6666"/>
             <button class="business_Check_Btn" onclick="search_business_number();">확인</button>
 
         </div>
 
         <div class="business-container-box">
             <div class="businessName_description" >상호명</div>
-            <input type="text" id="businessName" placeholder="동물 병원"/>
+            <input type="text" name="busi_name" id="busi_name" placeholder="동물 병원"/>
             <button class="businessNameCheck">중복확인</button>
         </div>
         <div class="business-container-box">
+            <div class="businessName_description" >대표자 이름:</div>
+            <input type="text" name="busi_ownerName" id="busi_ownerName" placeholder="대표자 이름"/>
+
+        </div>
+        <div class="business-container-box">
             <div class="businessName_description" >사업자 연락처: </div>
-            <input type="text" id="businessPhone" placeholder="02-000-0000"/>
+            <input type="text" name="busi_Phone"  id="busi_Phone" placeholder="02-000-0000"/>
 
         </div>
 
         <div class="business-container-box">
             <div class="businessName_description" >업종 : </div>
-            <select name="업종" id="kindOfWork" >
+            <select name="code_name" id="code_name" >
                 <option value="미용">미용</option>
                 <option value="호텔">호텔</option>
                 <option value="유치원">유치원</option>
@@ -63,47 +77,46 @@
 
         <div class="business-container-box">
             <div class="businessName_description" >주소 :</div>
-            <input type="text" id="businessAddress" placeholder="서울시 "/>
-            <input type="button" onclick="businessAddressCheck()" value="우편번호찾기">검색</input>
+            <input type="button"  onclick="businessAddressCheck()" value="우편번호찾기">검색</input>
         </div>
         <div class="business-container-box">
             <div class="businessName_description" >상세 주소 : </div>
-            <input type="text" id="detailAddress" placeholder="강남구 강남역"/>
+            <input type="text" name="busi_roadAddress" id="busi_roadAddress" placeholder="도로명 주소"/>
+            <input type="text" name="busi_Address" id="busi_Address" placeholder="지번주소 "/>
             <div class="businessName_description" >우편번호 </div>
-            <input type="text" id="postCode" placeholder="01234"/>
-            <input type="text" id="extraAdress" placeholder="참고사항"/>
+            <span id="guide" style="color:#999;display:none"></span>
+            <input type="text" name="postCode" id="postCode" placeholder="01234"/>
+            <input type="text" name="extraAdress" id="extraAdress" placeholder="상세주소"/>
 
         </div>
 
         <div class="business-container-box-time">
             <div class="businessName_description" >운영시간 : </div>
-            <input type="text" class="time start" placeholder="시작시간"/>
-            <input type="text" class="time end" placeholder="종료시간"/>
+            <input type="text" name="timestart" class="time start" id="timestart" placeholder="시작시간"/>
+            <input type="text" name="timeend" class="time end" id="timeend" placeholder="종료시간"/>
 
 
         </div>
         <div class="business-container-box">
             <div class="businessName_description" >상세 설명 : </div>
-            <input type="text" id="detailContent" placeholder=""/>
+            <input type="text" name="content" id="content" placeholder=""/>
 
         </div>
         <div class="business-container-box">
             <div class="businessName_description" >첨부파일 : </div>
-            <input type="file" id="img-File" placeholder="파일"/>
-
-
+            <input type="file" name="file" id="img-File" placeholder="파일"/>
 
         </div>
         <div>
 
-            <button class="business-enllo-Btn">등록</button>
-            <button class="business-enllo-Btn">취소</button>
+            <button type="submit" class="business-enllo-Btn">등록</button>
+            <button type="cancle" class="business-enllo-Btn">취소</button>
 
         </div>
 
 
     </div>
-
+    </form>
 </div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -123,64 +136,67 @@
 
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
 
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
                 }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postCode').value = data.zonecode;
-                document.getElementById("businessAddress").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("detailAddress").focus();
+                document.getElementById("busi_roadAddress").value = roadAddr;
+                document.getElementById("busi_Address").value = data.jibunAddress;
+
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("extraAdress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("extraAdress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
             }
         }).open();
-
     }
+
 //국세청
     function search_business_number(){
-        const number= $('#businessNumber').val();
+        const number= $('#busi_Number').val();
         alert(number);
         $.ajax({
             type:"post",
             url:'${path}/rest/validate',
          //   contentType :"application/json",
-            data:{number:number},
+            data:{"number":number},
            // dataType:"json",
-            success:function(data,status,xhr){
-                const dataHeader=data.result.response.header.resultCode;
-                if(status == 200){
-                    alert("여기있다.")
-                }
+            success:function(msg){
+                    alert(msg);
         }
-
         })
     }
 </script>

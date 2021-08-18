@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Board" type="com.dcm.zoobox.community.model.Board"/>
 		<typeAlias alias="Article" type="com.dcm.zoobox.community.model.Article"/>
 		<typeAlias alias="Comment" type="com.dcm.zoobox.community.model.Comment"/>
+		<typeAlias alias="business" type="com.dcm.zoobox.business.model.Business"/>
 	</typeAliases>
 	
 	<mappers>
@@ -32,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappers/boardmapper.xml"/>
 		<mapper resource="mappers/articlemapper.xml"/>
 		<mapper resource="mappers/commentmapper.xml"/>
+		<mapper resource="mappers/businessmapper.xml"/>
 	</mappers>
 	
 </configuration>

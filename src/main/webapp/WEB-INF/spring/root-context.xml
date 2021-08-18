@@ -54,5 +54,7 @@
 		<mybatis-spring:scan base-package="com.dcm.zoobox.comment.mapper"/>
 		<mybatis-spring:scan base-package="com.dcm.zoobox.board.mapper"/>
 		<mybatis-spring:scan base-package="com.dcm.zoobox.community.mapper"/>
+		<mybatis-spring:scan base-package="com.dcm.zoobox.business.mapper"/>
+
 	<context:component-scan base-package="com.dcm.zoobox.*"/>
 </beans>
